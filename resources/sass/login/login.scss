@@ -1,0 +1,31 @@
+#login {
+  background-image: url("/public/images/login/bg-login.jpg");
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+}
+
+#container-login {
+  background-color: rgba(0, 0, 0, 0.336);
+}
+
+#card-login {
+  width: 40%;
+}
+
+#card-header-login {
+  height: 0px;
+}
+
+#header-login {
+  border-radius: 10px;
+  height: 100px;
+  width: 80%;
+  box-shadow: 3px 3px 5px rgba(94, 91, 91, 0.5);
+  position: relative;
+  bottom: 10px;
+
+  h1 {
+    font-weight: bolder;
+  }
+}
