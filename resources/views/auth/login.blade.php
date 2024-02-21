@@ -13,7 +13,7 @@
             id="card-header-login">
             <div class="bg-dark text-light d-flex flex-column justify-content-center align-items-center text-center"
               id="header-login">
-              <h1 class="mb-0 mt-1">LOGIN</h1>
+              <h1 class="mb-0 mt-1">Login</h1>
               <p class="fw-bolder mb-1">{{ config('app.name', 'Laravel') }}</p>
             </div>
           </div>
@@ -47,7 +47,7 @@
               </div>
 
               <div class="d-grid col-6 mx-auto mt-4 gap-2">
-                <button class="btn btn-dark" type="submit">ENTRAR</button>
+                <button class="btn btn-dark fw-bolder" type="submit">ENTRAR</button>
               </div>
             </form>
 

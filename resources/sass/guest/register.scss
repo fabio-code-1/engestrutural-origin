@@ -1,0 +1,28 @@
+#register-boss {
+  background-color: #dee1e6;
+  height: 100vh;
+}
+
+#col-register-img {
+  background-image: url("/public/images/guest/bg-register.jpeg");
+  background-position: center;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  div {
+    margin: 0;
+    padding: 0;
+    background-color: rgba(10, 10, 10, 0.411);
+  }
+}
+
+#card-form-register-boss {
+  width: 100%;
+  box-shadow: 3px 3px 5px rgba(94, 91, 91, 0.5);
+  .card-body {
+    background-color: #d1d2d4;
+  }
+  .card-footer {
+    background-color: #dadce0;
+  }
+}

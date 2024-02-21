@@ -7,5 +7,8 @@
 // Bootstrap
 @import "bootstrap/scss/bootstrap";
 
-//login
-@import "./login/login.scss";
+//guest
+@import "./guest/main.scss";
+
+//auth
+@import "./auth/main.scss";

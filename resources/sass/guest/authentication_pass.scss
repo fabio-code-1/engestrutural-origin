@@ -1,0 +1,15 @@
+#authentication_pass {
+  height: 100vh;
+  background-color: #dee1e6;
+}
+
+#card-authentication_pass {
+  box-shadow: 3px 3px 5px rgba(94, 91, 91, 0.5);
+  width: 600px;
+  .card-body {
+    background-color: #d1d2d4;
+  }
+  .card-footer {
+    background-color: #d1d2d4;
+  }
+}
