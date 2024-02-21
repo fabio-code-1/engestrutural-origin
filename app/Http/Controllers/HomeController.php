@@ -6,24 +6,14 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    
-    /**
+     /**
      * index
      *
      * @return void
      */
     public function index()
     {
+        session()->forget('authenticated');
         return view('home');
     }   
 }

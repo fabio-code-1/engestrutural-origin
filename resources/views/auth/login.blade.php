@@ -1,3 +1,7 @@
+@php
+  session(['authenticated' => false]);
+@endphp
+
 @extends('layouts.guest')
 
 @section('content')
@@ -49,7 +53,8 @@
 
             <div class="card-footer bg-light mt-2 border-0 text-center">
               <p>Possui alguma conta?
-                <a href="{{ route('register') }}" class="text-primary fw-bolder text-decoration-none">Registre-se</a>
+                <a href="{{ route('authentication.pass') }}"
+                  class="text-primary fw-bolder text-decoration-none">Registre-se</a>
               </p>
               {{-- <p >
                 <a class="btn btn-link" href="{{ route('password.request') }}">
