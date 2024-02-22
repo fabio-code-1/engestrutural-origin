@@ -14,7 +14,7 @@
 </head>
 
 <body>
-  <div id="app">
+  <div id="app-guest">
     <main>
       @yield('content')
     </main>
