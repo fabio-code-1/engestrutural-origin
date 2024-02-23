@@ -53,6 +53,11 @@
                       <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
                         required autocomplete="new-password" placeholder="********">
                     </div>
+                    <select class="form-select" aria-label="Selecione sua profissão" name="cargo">
+                      <option selected disabled>Selecione sua profissão</option>
+                      <option value="engenheiro">ENGENHEIRO(A)</option>
+                      <option value="arquiteto">ARQUITETO(A)</option>
+                    </select>
 
                     <div class="d-grid col-6 mx-auto mt-4 gap-2">
                       <button class="btn btn-dark fw-bolder" type="submit">REGISTRAR-SE</button>

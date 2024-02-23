@@ -39,6 +39,13 @@
         <a href="#" class="nav-link px-0 align-middle">
           <i class="fs-4 bi-people"></i> <span class="d-none d-sm-inline ms-1">Customers</span> </a>
       </li>
+      @if (auth()->user()->chefe)
+        <li>
+          <a href="{{ route('funcionario.index') }}" class="nav-link fw-bolder text-light px-0 align-middle">
+            <i class="fs-4 bi bi-person-vcard-fill"></i></i><span class="d-none d-sm-inline ms-1">FUNCIONARIO</span>
+          </a>
+        </li>
+      @endif
     </ul>
     <hr>
     <div class="dropdown pb-4">
