@@ -20,7 +20,7 @@
       <div class="container-fluid">
         <div class="row flex-nowrap">
           @include('layouts.navbar')
-          <div class="col border-danger border border-2 px-1 py-1" id="app-conteudo">
+          <div class="col border-primary border-3 border px-1 py-1" id="app-conteudo">
             @yield('content')
           </div>
         </div>

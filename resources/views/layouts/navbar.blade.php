@@ -7,7 +7,7 @@
     <ul class="nav nav-pills flex-column mb-sm-auto align-items-center align-items-sm-start mb-0" id="menu">
       <li class="nav-item">
         <a href="{{ route('home') }}" class="nav-link fw-bolder text-light px-0 align-middle">
-          <i class="fs-4 bi-house"></i> <span class="d-none d-sm-inline ms-1">HOME</span>
+          <i class="fs-4 bi bi-house-fill"></i> <span class="d-none d-sm-inline ms-1">HOME</span>
         </a>
       </li>
       <li class="nav-item">
@@ -16,12 +16,12 @@
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link fw-bolder text-light px-0 align-middle">
+        <a href="{{ route('tarefa.index') }}" class="nav-link fw-bolder text-light px-0 align-middle">
           <i class="fs-4 bi-table"></i> <span class="d-none d-sm-inline ms-1">TAREFAS</span></a>
       </li>
       <li>
         <a href="{{ route('ponto.index') }}" class="nav-link fw-bolder text-light px-0 align-middle">
-          <i class="fs-4 bi bi-clock-history"></i> <span class="d-none d-sm-inline ms-1">PONTOS</span></a>
+          <i class="fs-4 bi bi-clock-fill"></i> <span class="d-none d-sm-inline ms-1">PONTOS</span></a>
       </li>
       <li>
         <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle">

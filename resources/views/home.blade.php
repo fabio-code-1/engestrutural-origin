@@ -25,7 +25,7 @@
               acompanhar o progresso de suas construções.
             </p>
             <p>
-              'Sinta-se à vontade para explorar as ferramentas e recursos disponíveis para otimizar seus fluxos de
+              Sinta-se à vontade para explorar as ferramentas e recursos disponíveis para otimizar seus fluxos de
               trabalho e aumentar a produtividade.
             </p>
             <p>
