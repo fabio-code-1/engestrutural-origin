@@ -27,4 +27,10 @@ class Chefe extends Model
     {
         return $this->hasMany(Funcionario::class, 'chefe_id');
     }
+
+     // Relacionamento com tarefas
+     public function tarefas()
+     {
+         return $this->hasMany(Tarefa::class);
+     }
 }

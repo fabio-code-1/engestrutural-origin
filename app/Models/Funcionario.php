@@ -11,6 +11,8 @@ class Funcionario extends Model
 {
     use HasFactory;
 
+    protected $table = 'funcionarios';
+
     protected $fillable = [
         'salario',
         'cargo',
@@ -27,5 +29,11 @@ class Funcionario extends Model
     {
         return $this->belongsTo(Chefe::class);
     }
+
+      // Relacionamento com tarefas
+      public function tarefas()
+      {
+          return $this->hasMany(Tarefa::class);
+      }
 
 }

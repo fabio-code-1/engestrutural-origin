@@ -16,7 +16,8 @@
               <ul
                 class="navbar-nav d-flex flex-lg-row flex-column justify-content-center justify-content-lg-between mb-lg-0 mb-2">
                 <li class="nav-item mb-lg-0 mx-2 mb-2">
-                  <button class="btn btn-success fw-bolder w-100" aria-current="page">ADICIONAR TAREFA</button>
+                  <button class="btn btn-success fw-bolder w-100" aria-current="page" data-bs-toggle="modal"
+                    data-bs-target="#tarefacreate">ADICIONAR TAREFA</button>
                 </li>
                 <li class="nav-item mb-lg-0 mx-2">
                   <div class="dropdown">
@@ -36,7 +37,7 @@
           </div>
         </nav>
       @endif
-      <ul id="myTab2" role="tablist"
+      <ul id="tarefa" role="tablist"
         class="nav nav-tabs nav-pills with-arrow lined flex-column flex-sm-row text-center">
         <li class="nav-item flex-sm-fill">
           <a id="executar-tab" data-bs-toggle="tab" href="#executar" role="tab" aria-controls="executar"
@@ -59,12 +60,12 @@
             aria-selected="false" class="nav-link text-uppercase rounded-0 fw-bolder">correcão</a>
         </li>
       </ul>
-      <div id="myTabContent" class="tab-content">
+      <div id="tarefaContent" class="tab-content">
         <div id="executar" role="tabpanel" aria-labelledby="executar-tab" class="tab-pane fade show active px-4 py-5">
-          <p class="leade font-italic">Conteúdo da aba executar</p>
+          @include('tarefa.tabContent.executar')
         </div>
         <div id="executando" role="tabpanel" aria-labelledby="executando-tab" class="tab-pane fade px-4 py-5">
-          <p class="leade font-italic">Conteúdo da aba executando</p>
+          @include('tarefa.tabContent.executando')
         </div>
         <div id="pendente" role="tabpanel" aria-labelledby="pendente-tab" class="tab-pane fade px-4 py-5">
           <p class="leade font-italic">Conteúdo da aba pendente</p>
@@ -78,4 +79,8 @@
       </div>
     </div>
   </section>
+  @if (auth()->user()->chefe)
+    @include('tarefa.create')
+  @endif
+
 @endsection
