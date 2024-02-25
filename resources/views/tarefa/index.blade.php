@@ -40,41 +40,50 @@
       <ul id="tarefa" role="tablist"
         class="nav nav-tabs nav-pills with-arrow lined flex-column flex-sm-row text-center">
         <li class="nav-item flex-sm-fill">
-          <a id="executar-tab" data-bs-toggle="tab" href="#executar" role="tab" aria-controls="executar"
-            aria-selected="true" class="nav-link text-uppercase active rounded-0 fw-bolder">executar</a>
+          <a id="executar-tab" href="{{ route('tarefa.selecionar_aba', ['aba' => 'executar']) }}" role="tab"
+            aria-controls="executar" aria-selected="{{ session('active_tab_tarefa') == 'executar' ? 'true' : 'false' }}"
+            class="nav-link text-uppercase rounded-0 fw-bolder {{ session('active_tab_tarefa') == 'executar' ? 'active' : '' }}">Executar</a>
         </li>
         <li class="nav-item flex-sm-fill">
-          <a id="executando-tab" data-bs-toggle="tab" href="#executando" role="tab" aria-controls="executando"
-            aria-selected="false" class="nav-link text-uppercase rounded-0 fw-bolder">executando</a>
+          <a id="executando-tab" href="{{ route('tarefa.selecionar_aba', ['aba' => 'executando']) }}" role="tab"
+            aria-controls="executando"
+            aria-selected="{{ session('active_tab_tarefa') == 'executando' ? 'true' : 'false' }}"
+            class="nav-link text-uppercase rounded-0 fw-bolder {{ session('active_tab_tarefa') == 'executando' ? 'active' : '' }}">Executando</a>
         </li>
         <li class="nav-item flex-sm-fill">
-          <a id="pendente-tab" data-bs-toggle="tab" href="#pendente" role="tab" aria-controls="pendente"
-            aria-selected="false" class="nav-link text-uppercase rounded-0 fw-bolder">pendente</a>
+          <a id="pendente-tab" href="{{ route('tarefa.selecionar_aba', ['aba' => 'pendente']) }}" role="tab"
+            aria-controls="pendente" aria-selected="{{ session('active_tab_tarefa') == 'pendente' ? 'true' : 'false' }}"
+            class="nav-link text-uppercase rounded-0 fw-bolder {{ session('active_tab_tarefa') == 'pendente' ? 'active' : '' }}">Pendente</a>
         </li>
         <li class="nav-item flex-sm-fill">
-          <a id="finalizado-tab" data-bs-toggle="tab" href="#finalizado" role="tab" aria-controls="finalizado"
-            aria-selected="false" class="nav-link text-uppercase rounded-0 fw-bolder">finalizado</a>
+          <a id="finalizado-tab" href="{{ route('tarefa.selecionar_aba', ['aba' => 'finalizado']) }}" role="tab"
+            aria-controls="finalizado"
+            aria-selected="{{ session('active_tab_tarefa') == 'finalizado' ? 'true' : 'false' }}"
+            class="nav-link text-uppercase rounded-0 fw-bolder {{ session('active_tab_tarefa') == 'finalizado' ? 'active' : '' }}">Finalizado</a>
         </li>
         <li class="nav-item flex-sm-fill">
-          <a id="correcao-tab" data-bs-toggle="tab" href="#correcao" role="tab" aria-controls="correcao"
-            aria-selected="false" class="nav-link text-uppercase rounded-0 fw-bolder">correcão</a>
+          <a id="correcao-tab" href="{{ route('tarefa.selecionar_aba', ['aba' => 'correcao']) }}" role="tab"
+            aria-controls="correcao" aria-selected="{{ session('active_tab_tarefa') == 'correcao' ? 'true' : 'false' }}"
+            class="nav-link text-uppercase rounded-0 fw-bolder {{ session('active_tab_tarefa') == 'correcao' ? 'active' : '' }}">Correção</a>
         </li>
       </ul>
       <div id="tarefaContent" class="tab-content">
-        <div id="executar" role="tabpanel" aria-labelledby="executar-tab" class="tab-pane fade show active px-4 py-5">
+        <div id="executar" role="tabpanel" aria-labelledby="executar-tab"
+          class="tab-pane fade {{ !session('active_tab_tarefa') || session('active_tab_tarefa') == 'executar' ? 'show active' : '' }} px-4 py-5">
           @include('tarefa.tabContent.executar')
         </div>
-        <div id="executando" role="tabpanel" aria-labelledby="executando-tab" class="tab-pane fade px-4 py-5">
+        <div id="executando" role="tabpanel" aria-labelledby="executando-tab"
+          class="tab-pane fade {{ session('active_tab_tarefa') == 'executando' ? 'show active' : '' }} px-4 py-5">
           @include('tarefa.tabContent.executando')
         </div>
         <div id="pendente" role="tabpanel" aria-labelledby="pendente-tab" class="tab-pane fade px-4 py-5">
-          <p class="leade font-italic">Conteúdo da aba pendente</p>
+          @include('tarefa.tabContent.pendente')
         </div>
         <div id="finalizado" role="tabpanel" aria-labelledby="finalizado-tab" class="tab-pane fade px-4 py-5">
-          <p class="leade font-italic">Conteúdo da aba finalizado</p>
+          @include('tarefa.tabContent.finalizado')
         </div>
         <div id="correcao" role="tabpanel" aria-labelledby="correcao-tab" class="tab-pane fade px-4 py-5">
-          <p class="leade font-italic">Conteúdo da aba correção</p>
+          @include('tarefa.tabContent.correcao')
         </div>
       </div>
     </div>

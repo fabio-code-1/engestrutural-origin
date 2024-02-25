@@ -68,6 +68,7 @@ class TarefaController extends Controller
         $tarefa->chefe_id = auth()->user()->chefe->id; // Associa a tarefa ao chefe logado
         $tarefa->save();
     
+        $request->session()->put('active_tab_tarefa', $request->status);
         // Redirecionar de volta com uma mensagem de sucesso
         return redirect()->route('tarefa.index')->with('success', 'Tarefa criada com sucesso.');
     }
@@ -92,17 +93,44 @@ class TarefaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Tarefa $tarefa)
+    public function update(Request $request)
     {
+        // Validar os dados recebidos do formulário
         $request->validate([
+            'idTarefa' => 'required|exists:tarefas,id',
+            'funcionario' => 'required|exists:funcionarios,id',
+            'titulo' => 'required|string|max:255',
+            'descricao' => 'required|string',
+            'prazo' => 'required|date',
+            'prioridade' => 'required|in:baixa,media,alta',
             'status' => 'required|in:executar,executando,pendente,finalizado,correcao',
         ]);
     
-        $tarefa->status = $request->status;
-        $tarefa->save();
+        try {
+            // Encontrar a tarefa pelo ID
+            $tarefa = Tarefa::findOrFail($request->idTarefa);
     
-        return redirect()->back()->with('success', 'Status da tarefa atualizado com sucesso.');
+            // Atualizar os dados da tarefa
+            $tarefa->funcionario_id = $request->funcionario;
+            $tarefa->titulo = $request->titulo;
+            $tarefa->descricao = $request->descricao;
+            $tarefa->prazo = $request->prazo;
+            $tarefa->prioridade = $request->prioridade;
+            $tarefa->status = $request->status;
+    
+            // Salvar as alterações no banco de dados
+            $tarefa->save();
+    
+            // Redirecionar de volta com uma mensagem de sucesso
+            return redirect()->back()->with('success', 'Tarefa atualizada com sucesso.');
+        } catch (\Exception $e) {
+            // Se ocorrer algum erro, redirecionar de volta com uma mensagem de erro
+            return redirect()->back()->with('error', 'Erro ao atualizar a tarefa: ' . $e->getMessage());
+        }
     }
+    
+    
+    
     
 
     /**
@@ -113,4 +141,26 @@ class TarefaController extends Controller
         $tarefa->delete();
         return redirect()->route('tarefa.index')->with('success', 'Tarefa deletada com sucesso.');
     }
+
+
+    public function selecionarAba($aba)
+    {
+        session()->put('active_tab_tarefa', $aba);
+        return redirect()->route('tarefa.index');
+    }
+
+    public function updateStatus(Request $request, Tarefa $tarefa)
+    {
+        $request->validate([
+            'status' => 'required|in:executar,executando,pendente,finalizado,correcao',
+        ]);
+    
+        $tarefa->status = $request->status;
+        $tarefa->save();
+    
+        $request->session()->put('active_tab_tarefa', $request->status);
+    
+        return redirect()->back()->with('success', 'Status da tarefa atualizado com sucesso.');
+    }
+
 }
