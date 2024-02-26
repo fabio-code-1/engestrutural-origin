@@ -79,5 +79,7 @@
 
 @if (session('active_tab_tarefa') === 'executar')
   @include('tarefa.show')
-  @include('tarefa.edit')
+  @if (auth()->user()->chefe)
+    @include('tarefa.edit')
+  @endif
 @endif

@@ -20,13 +20,23 @@
               class="card-header text-uppercase fw-bolder {{ $bgColor }} d-flex justify-content-between align-items-center">
               <span>{{ $tarefa->titulo }}</span>
               @if (auth()->user()->chefe)
-                <form method="POST" action="{{ route('tarefa.destroy', ['tarefa' => $tarefa->id]) }}"
-                  id="deleteFormTarefa{{ $tarefa->id }}">
-                  @csrf
-                  @method('DELETE')
-                  <button type="button" class="btn btn-dark delete-button-tarefa"><i
-                      class="bi bi-trash3-fill"></i></button>
-                </form>
+                <div class="d-flex">
+                  <button class="btn btn-dark fw-bolder me-2" aria-current="page" data-bs-toggle="modal"
+                    data-bs-target="#tarefaedit" data-tarefa-id="{{ $tarefa->id }}"
+                    data-tarefa-titulo="{{ $tarefa->titulo }}" data-tarefa-descricao="{{ $tarefa->descricao }}"
+                    data-tarefa-prazo="{{ $tarefa->prazo }}" data-tarefa-prioridade="{{ $tarefa->prioridade }}"
+                    data-tarefa-status="{{ $tarefa->status }}">
+                    <i class="bi bi-pencil-square"></i>
+                  </button>
+
+                  <form method="POST" action="{{ route('tarefa.destroy', ['tarefa' => $tarefa->id]) }}"
+                    id="deleteFormTarefa{{ $tarefa->id }}">
+                    @csrf
+                    @method('DELETE')
+                    <button type="button" class="btn btn-dark delete-button-tarefa"><i
+                        class="bi bi-trash3-fill"></i></button>
+                  </form>
+                </div>
               @endif
             </div>
 
@@ -44,7 +54,7 @@
                 {{ \Carbon\Carbon::parse($tarefa->prazo)->format('d/m/Y') }}
               </p>
               <p class="card-text"><span class="fw-bolder">Prioridade:</span> {{ $tarefa->prioridade }}</p>
-              <p class="card-text"><span class="fw-bolder">Status: </span>
+              <p class="card-text mb-0"><span class="fw-bolder">Status: </span>
               <form id="updateFormTarefa" method="POST"
                 action="{{ route('tarefa.updatestatus', ['tarefa' => $tarefa->id]) }}">
                 @csrf
@@ -69,4 +79,7 @@
 
 @if (session('active_tab_tarefa') === 'executando')
   @include('tarefa.show')
+  @if (auth()->user()->chefe)
+    @include('tarefa.edit')
+  @endif
 @endif

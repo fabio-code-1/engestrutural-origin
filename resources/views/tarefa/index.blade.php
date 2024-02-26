@@ -76,13 +76,16 @@
           class="tab-pane fade {{ session('active_tab_tarefa') == 'executando' ? 'show active' : '' }} px-4 py-5">
           @include('tarefa.tabContent.executando')
         </div>
-        <div id="pendente" role="tabpanel" aria-labelledby="pendente-tab" class="tab-pane fade px-4 py-5">
+        <div id="pendente" role="tabpanel" aria-labelledby="pendente-tab"
+          class="tab-pane fade {{ session('active_tab_tarefa') == 'pendente' ? 'show active' : '' }} px-4 py-5">
           @include('tarefa.tabContent.pendente')
         </div>
-        <div id="finalizado" role="tabpanel" aria-labelledby="finalizado-tab" class="tab-pane fade px-4 py-5">
+        <div id="finalizado" role="tabpanel" aria-labelledby="finalizado-tab"
+          class="tab-pane fade {{ session('active_tab_tarefa') == 'finalizado' ? 'show active' : '' }} px-4 py-5">
           @include('tarefa.tabContent.finalizado')
         </div>
-        <div id="correcao" role="tabpanel" aria-labelledby="correcao-tab" class="tab-pane fade px-4 py-5">
+        <div id="correcao" role="tabpanel" aria-labelledby="correcao-tab"
+          class="tab-pane fade {{ session('active_tab_tarefa') == 'correcao' ? 'show active' : '' }} px-4 py-5">
           @include('tarefa.tabContent.correcao')
         </div>
       </div>
