@@ -2,7 +2,7 @@
   <div class="d-flex flex-column align-items-center align-items-sm-start min-vh-100 px-3 pt-2 text-white">
     <a href="{{ route('home') }}"
       class="d-flex align-items-center mb-md-0 me-md-auto text-decoration-none pb-3 text-white">
-      <span class="fs-5 d-none d-sm-inline"> {{ config('app.name', 'Laravel') }} </span>
+      <span class="fs-5 d-none d-sm-inline text-uppercase fw-bolder"> {{ config('app.name', 'Laravel') }} </span>
     </a>
     <ul class="nav nav-pills flex-column mb-sm-auto align-items-center align-items-sm-start mb-0" id="menu">
       <li class="nav-item">
@@ -11,7 +11,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="{{ route('home') }}" class="nav-link fw-bolder text-light px-0 align-middle">
+        <a href="{{ route('arquivo.index') }}" class="nav-link fw-bolder text-light px-0 align-middle">
           <i class="fs-4 bi bi-file-earmark-arrow-up-fill"></i> <span class="d-none d-sm-inline ms-1">ARQUIVOS</span>
         </a>
       </li>

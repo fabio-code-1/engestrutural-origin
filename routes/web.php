@@ -14,6 +14,6 @@ Route::get('/tabela/ponto', function () {
 
 include __DIR__.'/Auth/auth.php';
 include __DIR__.'/Tarefa/tarefa.php';
-
+include __DIR__.'/Arquivo/arquivo.php';
 
 

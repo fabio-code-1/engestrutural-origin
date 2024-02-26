@@ -42,7 +42,7 @@
         <li class="nav-item flex-sm-fill">
           <a id="executar-tab" href="{{ route('tarefa.selecionar_aba', ['aba' => 'executar']) }}" role="tab"
             aria-controls="executar" aria-selected="{{ session('active_tab_tarefa') == 'executar' ? 'true' : 'false' }}"
-            class="nav-link text-uppercase rounded-0 fw-bolder {{ session('active_tab_tarefa') == 'executar' ? 'active' : '' }}">Executar</a>
+            class="nav-link text-uppercase rounded-0 fw-bolder {{ !session('active_tab_tarefa') || session('active_tab_tarefa') == 'executar' ? 'active' : '' }}">Executar</a>
         </li>
         <li class="nav-item flex-sm-fill">
           <a id="executando-tab" href="{{ route('tarefa.selecionar_aba', ['aba' => 'executando']) }}" role="tab"
