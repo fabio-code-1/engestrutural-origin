@@ -61,7 +61,7 @@ class FuncionarioController extends Controller
         $funcionario->user_id = $user->id;
         $funcionario->save();
     
-        return redirect()->route('home')->with('success', 'Funcionário criado com sucesso.');
+        return redirect()->route('funcionario.index')->with('success', 'Funcionário criado com sucesso.');
     }
     
     public function show(string $id)

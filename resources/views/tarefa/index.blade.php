@@ -1,8 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+  @php
+    $active_tab_tarefa = session('active_tab_tarefa');
+    if (!$active_tab_tarefa) {
+        $active_tab_tarefa = 'executar';
+        session(['active_tab_tarefa' => $active_tab_tarefa]);
+    }
+  @endphp
   <section id="tarefa-index">
-
     <div class="p-md-4">
       @if (auth()->user()->chefe)
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
