@@ -11,8 +11,8 @@
         </div>
         <div class="modal-body">
 
-          <div class="form-group">
-            <label for="funcionario" class="form-label">FUNCIONARIO:</label>
+          <div class="form-group mb-4">
+            <label for="funcionario" class="form-label fw-bolder">FUNCIONARIO:</label>
             <select id="funcionario" name="funcionario" class="form-select" required>
               @foreach ($funcionarios as $funcionario)
                 <option value="{{ $funcionario->id }}">{{ $funcionario->user->name }}</option>
@@ -20,23 +20,23 @@
             </select>
           </div>
 
-          <div class="form-group">
-            <label for="titulo" class="form-label">Título:</label>
+          <div class="form-group mb-4">
+            <label for="titulo" class="form-label fw-bolder">TITULO:</label>
             <input type="text" id="titulo" name="titulo" class="form-control" required>
           </div>
 
-          <div class="form-group">
-            <label for="descricao" class="form-label">Descrição:</label>
+          <div class="form-group mb-4">
+            <label for="descricao" class="form-label fw-bolder">DESCRIÇÃO:</label>
             <textarea id="descricao" name="descricao" class="form-control" rows="3" required></textarea>
           </div>
 
-          <div class="form-group">
-            <label for="prazo" class="form-label">Prazo:</label>
+          <div class="form-group mb-4">
+            <label for="prazo" class="form-label fw-bolder">PRAZO:</label>
             <input type="date" id="prazo" name="prazo" class="form-control" required>
           </div>
 
-          <div class="form-group">
-            <label for="prioridade" class="form-label">Prioridade:</label>
+          <div class="form-group mb-4">
+            <label for="prioridade" class="form-label fw-bolder">PRIORIDADE:</label>
             <select id="prioridade" name="prioridade" class="form-control" required>
               <option value="baixa">Baixa</option>
               <option value="media">Média</option>
@@ -45,7 +45,7 @@
           </div>
 
           <div class="form-group">
-            <label for="status" class="form-label">Status:</label>
+            <label for="status" class="form-label fw-bolder">STATUS:</label>
             <select id="status" name="status" class="form-select" required>
               <option value="executar">Executar</option>
               <option value="executando">Executando</option>

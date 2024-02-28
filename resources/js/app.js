@@ -6,3 +6,6 @@ import "./tarefa/show";
 import "./tarefa/delete";
 import "./tarefa/update";
 import "./tarefa/edit";
+
+//cliente
+import "./cliente/create";

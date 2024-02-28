@@ -16,7 +16,7 @@
                 class="navbar-nav d-flex flex-lg-row flex-column justify-content-center justify-content-lg-between mb-lg-0 mb-2">
                 <li class="nav-item mb-lg-0 mx-2 mb-2">
                   <button class="btn btn-success fw-bolder w-100" aria-current="page" data-bs-toggle="modal"
-                    data-bs-target="#tarefacreate">ADICIONAR CLIENTE</button>
+                    data-bs-target="#create">ADICIONAR CLIENTE</button>
                 </li>
                 <li class="nav-item mb-lg-0 mx-2">
                   <div class="dropdown">
@@ -40,7 +40,7 @@
         <button class="btn btn-primary">Pesquisar</button>
       </div>
 
-      <table class="table-light table shadow" id>
+      <table class="table-light table shadow" id="clientes_table">
         <thead class="table-primary">
           <tr>
             <th scope="col">#</th>
@@ -49,17 +49,28 @@
             <th scope="col">RG</th>
             <th scope="col">CPF</th>
             <th scope="col">TELEFONE</th>
+            <th scope="col">AÇÃO</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
+          @foreach ($clientes as $cliente)
+            <tr>
+              <th scope="row">{{ $cliente->id }}</th>
+              <td>{{ $cliente->nome }}</td>
+              <td>{{ $cliente->email }}</td>
+              <td>{{ $cliente->rg }}</td>
+              <td>{{ $cliente->cpf }}</td>
+              <td>{{ $cliente->telefone }}</td>
+              <td><button>show</button><button>show</button></td>
+            </tr>
+          @endforeach
         </tbody>
       </table>
+
     </div>
   </section>
+
+  @if (auth()->user()->chefe)
+    @include('cliente.create')
+  @endif
 @endsection
