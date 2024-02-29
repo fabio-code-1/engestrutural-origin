@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <section id="arquivo-index">
+  <section id="cliente-index">
     <div class="p-md-4">
       @if (auth()->user()->chefe)
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -36,13 +36,12 @@
       @endif
 
       <div class="d-flex justify-content-center align-items-center bg-dark py-2 text-center">
-        <input class="form-control w-50 me-2" type="text" name="" id="" placeholder="Search...">
-        <button class="btn btn-primary">Pesquisar</button>
+        <input class="form-control w-50 me-2" type="text" id="searchInput" placeholder="Pequisar nome do cliente...">
       </div>
 
       <table class="table-light table shadow" id="clientes_table">
         <thead class="table-primary">
-          <tr>
+          <tr class="text-center align-middle">
             <th scope="col">#</th>
             <th scope="col">NOME</th>
             <th scope="col">EMAIL</th>
@@ -54,14 +53,16 @@
         </thead>
         <tbody>
           @foreach ($clientes as $cliente)
-            <tr>
-              <th scope="row">{{ $cliente->id }}</th>
+            <tr class="text-center align-middle">
+              <th scope="row">{{ $loop->iteration }}</th>
               <td>{{ $cliente->nome }}</td>
-              <td>{{ $cliente->email }}</td>
-              <td>{{ $cliente->rg }}</td>
-              <td>{{ $cliente->cpf }}</td>
-              <td>{{ $cliente->telefone }}</td>
-              <td><button>show</button><button>show</button></td>
+              <td>{!! $cliente->email ? $cliente->email : '<i class="bi bi-dash-lg"></i>' !!}</td>
+              <td>{!! $cliente->rg ? $cliente->rg : '<i class="bi bi-dash-lg"></i>' !!}</td>
+              <td>{!! $cliente->cpf ? $cliente->cpf : '<i class="bi bi-dash-lg"></i>' !!}</td>
+              <td>{!! $cliente->telefone ? $cliente->telefone : '<i class="bi bi-dash-lg"></i>' !!}</td>
+              <td>
+                <a href="{{ route('cliente.show', ['cliente' => $cliente->id]) }}" class="btn btn-dark">PERFIL</a>
+              </td>
             </tr>
           @endforeach
         </tbody>

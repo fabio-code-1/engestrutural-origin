@@ -11,9 +11,9 @@ class ClienteController extends Controller
 
     public function index()
     {
-        $clientes = Cliente::all(); // Recupera todos os clientes do banco de dados
+        $clientes = Cliente::orderBy('nome')->get();
 
-        return view('cliente.index', compact('clientes')); // Passa os clientes para a view
+        return view('cliente.index', compact('clientes')); 
     }
 
     public function create()
@@ -46,26 +46,52 @@ class ClienteController extends Controller
         return redirect()->route('cliente.index')->with('success', 'Cliente criado com sucesso!');
     }
 
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $cliente = Cliente::findOrFail($id);
+        return view('cliente.show', compact('cliente'));
     }
-
+    
 
     public function edit(string $id)
     {
         //
     }
 
-
     public function update(Request $request, string $id)
     {
-        //
+
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'rg' => 'nullable|string|max:20',
+            'cpf' => 'nullable|string|max:14',
+            'telefone' => 'nullable|string|max:20',
+        ]);
+    
+
+        $cliente = Cliente::findOrFail($id);
+    
+
+        $cliente->nome = $request->input('nome');
+        $cliente->email = $request->input('email');
+        $cliente->rg = $request->input('rg');
+        $cliente->cpf = $request->input('cpf');
+        $cliente->telefone = $request->input('telefone');
+    
+
+        $cliente->save();
+    
+
+        return back()->with('success', 'Cliente atualizado com sucesso!');
     }
 
 
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $cliente = Cliente::findOrFail($id);
+        $cliente->delete();
+        return redirect()->route('cliente.index')->with('success', 'Cliente deletado com sucesso!');
     }
+    
 }
