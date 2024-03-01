@@ -49,7 +49,9 @@ class ClienteController extends Controller
     public function show($id)
     {
         $cliente = Cliente::findOrFail($id);
-        return view('cliente.show', compact('cliente'));
+        $projetos = $cliente->projetos; // Recupera todos os projetos associados a este cliente
+
+        return view('cliente.show', compact('cliente', 'projetos'));
     }
     
 

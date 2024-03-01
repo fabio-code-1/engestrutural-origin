@@ -18,4 +18,9 @@ class Cliente extends Model
         'cpf',
         'telefone',
     ];
+
+    public function projetos()
+    {
+        return $this->hasMany(Projeto::class, 'id_cliente');
+    }
 }

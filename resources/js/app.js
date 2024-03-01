@@ -12,3 +12,8 @@ import "./cliente/create";
 import "./cliente/delete";
 import "./cliente/edit";
 import "./cliente/search-cliente";
+
+//projeto
+import "./projeto/create";
+import "./projeto/show";
+import "./projeto/search-projeto";

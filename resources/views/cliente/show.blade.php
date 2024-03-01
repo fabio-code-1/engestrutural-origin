@@ -44,7 +44,8 @@
               <div class="card-body">
                 <h5 class="card-title text-center">CONTROLE</h5>
                 <div class="d-grid col-6 mx-auto mt-4 gap-2">
-                  <button class="btn btn-primary" type="button">NOVO PROJETO</button>
+                  <button class="btn btn-primary create-projeto-button" data-cliente="{{ $cliente->id }}"
+                    type="button">NOVO PROJETO</button>
                   <button class="btn btn-success" type="button">PAGAMENTO</button>
                   <button class="btn btn-warning edit-button" type="button"
                     data-cliente="{{ $cliente->id }}">EDITAR</button>
@@ -65,10 +66,71 @@
         <dov class="col">
           <div class="card overflow-auto shadow">
             <div class="card-body" style="height: 55vh">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <nav class="navbar navbar-dark bg-dark">
+                <div class="container-fluid d-flex align-items-center">
+                  <h3 class="navbar-brand text-uppercase fw-bolder">Projetos do Cliente</h3>
+                  <div class="d-flex">
+                    <input class="form-control me-2" type="search" id="searchInputProjeto"
+                      placeholder="Pesquisar projeto...">
+                  </div>
+                </div>
+              </nav>
 
+              <table class="table-light table shadow" id="projeto_table">
+                <thead class="table-primary">
+                  <tr class="text-center align-middle">
+                    <th scope="col">#</th>
+                    <th scope="col">NOME</th>
+                    <th scope="col">DESCRIÇÂO</th>
+                    @if (auth()->user()->chefe)
+                      <th scope="col">VALOR ARQUITETÔNICO</th>
+                      <th scope="col">VALOR ESTRUTURAL</th>
+                      <th scope="col">VALOR HIDRAULICA</th>
+                      <th scope="col">VALOR ELETRICA</th>
+                      <th scope="col">TOTAL</th>
+                    @endif
+                    <th scope="col">AÇÃO</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach ($projetos as $projeto)
+                    <tr class="text-center align-middle">
+                      <th scope="row">{{ $loop->iteration }}</th>
+                      <td>{{ $projeto->nome }}</td>
+                      <td>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#showProjeto"
+                          data-descricao="{{ $projeto->descricao }}" data-titulo="{{ $projeto->nome }}">
+                          <i class="bi bi-zoom-in"></i>
+                        </button>
+                      </td>
+                      @if (auth()->user()->chefe)
+                        <td>{!! $projeto->valor_arquitetonico ? $projeto->valor_arquitetonico : '<i class="bi bi-dash-lg"></i>' !!}</td>
+                        <td>{!! $projeto->valor_estrutural ? $projeto->valor_estrutural : '<i class="bi bi-dash-lg"></i>' !!}</td>
+                        <td>{!! $projeto->valor_hidraulica ? $projeto->valor_hidraulica : '<i class="bi bi-dash-lg"></i>' !!}</td>
+                        <td>{!! $projeto->valor_eletrica ? $projeto->valor_eletrica : '<i class="bi bi-dash-lg"></i>' !!}</td>
+                        <td>{!! $projeto->valor_arquitetonico +
+                            $projeto->valor_estrutural +
+                            $projeto->valor_hidraulica +
+                            $projeto->valor_eletrica !!}
+                        </td>
+                      @endif
+                      <td>
+                        <a href="{{ route('cliente.show', ['cliente' => $cliente->id]) }}" class="btn btn-dark">
+                          ARQUIVOS
+                        </a>
+                        @if (auth()->user()->chefe)
+                          <a href="{{ route('cliente.show', ['cliente' => $cliente->id]) }}" class="btn btn-warning">
+                            EDITAR
+                          </a>
+                          <a href="{{ route('cliente.show', ['cliente' => $cliente->id]) }}" class="btn btn-danger">
+                            DELETAR
+                          </a>
+                        @endif
+                      </td>
+                    </tr>
+                  @endforeach
+                </tbody>
+              </table>
             </div>
           </div>
         </dov>
@@ -79,5 +141,7 @@
 
   @if (auth()->user()->chefe)
     @include('cliente.edit')
+    @include('projeto.create')
   @endif
+  @include('projeto.show')
 @endsection
