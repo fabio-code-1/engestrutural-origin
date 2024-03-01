@@ -78,7 +78,27 @@ class ProjetoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'descricao' => 'nullable|string',
+            'valor_arquitetonico' => 'nullable|numeric',
+            'valor_estrutural' => 'nullable|numeric',
+            'valor_hidraulica' => 'nullable|numeric',
+            'valor_eletrica' => 'nullable|numeric',
+        ]);
+    
+        $projeto = Projeto::findOrFail($id);
+    
+        $projeto->status = $request->status;
+        $projeto->nome = $request->nome;
+        $projeto->descricao = $request->descricao;
+        $projeto->valor_arquitetonico = $request->valor_arquitetonico;
+        $projeto->valor_estrutural = $request->valor_estrutural;
+        $projeto->valor_hidraulica = $request->valor_hidraulica;
+        $projeto->valor_eletrica = $request->valor_eletrica;
+
+        $projeto->save();
+        return back()->with('success', 'Projeto atualizado com sucesso!');
     }
 
     /**
@@ -86,6 +106,9 @@ class ProjetoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $projeto = Projeto::findOrFail($id);
+        $projeto->delete();
+    
+        return redirect()->route('cliente.show', ['cliente' => $projeto->id_cliente])->with('success', 'Projeto excluído com sucesso!');
     }
 }

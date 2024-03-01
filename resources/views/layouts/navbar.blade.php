@@ -12,7 +12,7 @@
       </li>
       <li class="nav-item">
         <a href="{{ route('cliente.index') }}" class="nav-link fw-bolder text-light px-0 align-middle">
-          <i class="fs-4 bi bi-file-earmark-arrow-up-fill"></i> <span class="d-none d-sm-inline ms-1">CLIENTES</span>
+          <i class="fs-4 bi bi-file-person-fill"></i> <span class="d-none d-sm-inline ms-1">CLIENTES</span>
         </a>
       </li>
       <li>

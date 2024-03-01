@@ -82,11 +82,12 @@
                     <th scope="col">#</th>
                     <th scope="col">NOME</th>
                     <th scope="col">DESCRIÇÂO</th>
+                    <th scope="col">STATUS</th>
                     @if (auth()->user()->chefe)
-                      <th scope="col">VALOR ARQUITETÔNICO</th>
-                      <th scope="col">VALOR ESTRUTURAL</th>
-                      <th scope="col">VALOR HIDRAULICA</th>
-                      <th scope="col">VALOR ELETRICA</th>
+                      <th scope="col">ARQUITETÔNICO</th>
+                      <th scope="col">ESTRUTURAL</th>
+                      <th scope="col">HIDRAULICA</th>
+                      <th scope="col">ELETRICA</th>
                       <th scope="col">TOTAL</th>
                     @endif
                     <th scope="col">AÇÃO</th>
@@ -103,6 +104,17 @@
                           <i class="bi bi-zoom-in"></i>
                         </button>
                       </td>
+
+                      @if ($projeto->status === 0)
+                        <td class="bg-info fw-bolder">
+                          Executando
+                        </td>
+                      @else
+                        <td class="fw-bolder" style="background-color: rgb(205, 241, 151)">
+                          Finalizado
+                        </td>
+                      @endif
+
                       @if (auth()->user()->chefe)
                         <td>{!! $projeto->valor_arquitetonico ? $projeto->valor_arquitetonico : '<i class="bi bi-dash-lg"></i>' !!}</td>
                         <td>{!! $projeto->valor_estrutural ? $projeto->valor_estrutural : '<i class="bi bi-dash-lg"></i>' !!}</td>
@@ -116,15 +128,23 @@
                       @endif
                       <td>
                         <a href="{{ route('cliente.show', ['cliente' => $cliente->id]) }}" class="btn btn-dark">
-                          ARQUIVOS
+                          <i class="fs-4 bi bi-file-earmark-arrow-up-fill"></i>
                         </a>
                         @if (auth()->user()->chefe)
-                          <a href="{{ route('cliente.show', ['cliente' => $cliente->id]) }}" class="btn btn-warning">
-                            EDITAR
+                          <button class="btn btn-warning edit-projeto-button" data-projeto="{{ $projeto->id }}">
+                            <i class="fs-4 bi bi-pencil-fill"></i>
+                          </button>
+
+                          <a href="{{ route('projeto.destroy', ['projeto' => $projeto->id]) }}" class="btn btn-danger"
+                            onclick="event.preventDefault(); if(confirm('Tem certeza que deseja excluir este projeto?')) document.getElementById('delete-form-{{ $projeto->id }}').submit();">
+                            <i class="bi bi-trash3-fill fs-4"></i>
                           </a>
-                          <a href="{{ route('cliente.show', ['cliente' => $cliente->id]) }}" class="btn btn-danger">
-                            DELETAR
-                          </a>
+                          <form id="delete-form-{{ $projeto->id }}"
+                            action="{{ route('projeto.destroy', ['projeto' => $projeto->id]) }}" method="POST"
+                            style="display: none;">
+                            @csrf
+                            @method('DELETE')
+                          </form>
                         @endif
                       </td>
                     </tr>
@@ -142,6 +162,9 @@
   @if (auth()->user()->chefe)
     @include('cliente.edit')
     @include('projeto.create')
+    @if (isset($projeto))
+      @include('projeto.edit')
+    @endif
   @endif
   @include('projeto.show')
 @endsection
