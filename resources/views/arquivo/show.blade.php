@@ -28,7 +28,10 @@
   <ul>
     @foreach ($arquivos as $arquivo)
       <li>
-        <span>Nome do Arquivo: {{ $arquivo->nome }}</span>
+        <span>Nome do Arquivo: {{ $arquivo->nome }}</span> <br>
+        <span>Nome do categoria: {{ $arquivo->categoria }}</span> <br>
+        <span>Enviado por: {{ $arquivo->user->name }}</span>
+        <!-- Ajuste para o nome do campo que armazena o nome do usuário -->
         <span>
           <a href="{{ asset('storage/' . $arquivo->files) }}" download="{{ $arquivo->nome }}">Download</a>
         </span>
@@ -41,6 +44,7 @@
         </span>
       </li>
     @endforeach
+
   </ul>
 
   @include('arquivo.create')

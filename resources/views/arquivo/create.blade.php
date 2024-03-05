@@ -5,6 +5,8 @@
     <form method="POST" action="{{ route('arquivo.store') }}" enctype="multipart/form-data">
       @csrf
       <input type="hidden" name="id_projeto" value="{{ $projeto->id }}">
+      <input type="hidden" name="id_user" value="{{ auth()->user()->id }}">
+      <input type="hidden" name="categoria" value="{{ $cargo }}">
       <div class="modal-content">
         <div class="modal-header bg-dark text-light">
           <h5 class="modal-title" id="create-arquivoLabel">NOVO ARQUIVO</h5>

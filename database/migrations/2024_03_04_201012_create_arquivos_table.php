@@ -17,7 +17,13 @@ return new class extends Migration
             $table->text('descricao')->nullable();
             $table->string('files');
             $table->unsignedBigInteger('id_projeto');
-            $table->foreign('id_projeto')->references('id')->on('projetos');
+            $table->foreign('id_projeto')
+            ->references('id')
+            ->on('projetos')
+            ->onDelete('cascade');      
+            $table->unsignedBigInteger('id_user');
+            $table->foreign('id_user')->references('id')->on('users');
+            $table->string('categoria'); 
             $table->timestamps();
         });
     }

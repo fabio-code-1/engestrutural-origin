@@ -36,8 +36,11 @@ class ArquivoController extends Controller
             'nome' => 'required|string|max:255',
             'descricao' => 'nullable|string',
             'files' => 'required|file',
-            'id_projeto' => 'required|exists:projetos,id' // Garante que o id_projeto exista na tabela de projetos
+            'id_projeto' => 'required|exists:projetos,id',
+            'id_user' => 'required|exists:users,id',
+            'categoria' => 'required|string'
         ]);
+        
 
         // Obter o arquivo enviado do formulário
         $arquivo = $request->file('files');
@@ -53,6 +56,8 @@ class ArquivoController extends Controller
                 'descricao' => $validatedData['descricao'],
                 'files' => $caminhoArquivo,
                 'id_projeto' => $validatedData['id_projeto'],
+                'id_user' => $validatedData['id_user'], 
+                'categoria' => $validatedData['categoria'] 
             ]);
 
             // Salvar o arquivo no banco de dados
@@ -71,8 +76,16 @@ class ArquivoController extends Controller
     {
         $projeto = Projeto::findOrFail($id);
         $arquivos = Arquivo::where('id_projeto', $projeto->id)->get();
-        // Retorna a view com os arquivos do projeto.
-        return view('arquivo.show', compact('projeto', 'arquivos'));
+     
+        $chefe = auth()->user()->chefe;
+        if ($chefe) {
+            $cargo = $chefe->cargo;
+        } else {
+            $funcionario = auth()->user()->funcionario;
+            $cargo = $funcionario->cargo;
+        }
+        
+        return view('arquivo.show', compact('projeto', 'arquivos', 'cargo'));
     }
     
     
@@ -100,13 +113,13 @@ class ArquivoController extends Controller
     {
         // Verifique se o arquivo foi encontrado
         if ($arquivo) {
-            // Obtenha o caminho do arquivo e remova o prefixo 'public/'
-            $caminhoArquivo = str_replace('public/', '', $arquivo->files);
+            // Obtenha o caminho do arquivo e mantenha o prefixo 'public/'
+            $caminhoArquivo = 'public/' . $arquivo->files;
     
             // Verifique se o arquivo existe no sistema de arquivos
-            if (Storage::disk('public')->exists($caminhoArquivo)) {
+            if (Storage::disk('local')->exists($caminhoArquivo)) {
                 // Exclua o arquivo do sistema de arquivos
-                Storage::disk('public')->delete($caminhoArquivo);
+                Storage::disk('local')->delete($caminhoArquivo);
             } else {
                 // Se o arquivo não existir, retorne uma mensagem de erro
                 return back()->with('error', 'O arquivo não existe no sistema de arquivos.');
@@ -121,5 +134,6 @@ class ArquivoController extends Controller
             return back()->with('error', 'Arquivo não encontrado.');
         }
     }
+    
     
 }

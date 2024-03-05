@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Projeto;
 
+use App\Models\Arquivo;
 use App\Models\Projeto;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class ProjetoController extends Controller
 {
@@ -107,8 +109,17 @@ class ProjetoController extends Controller
     public function destroy(string $id)
     {
         $projeto = Projeto::findOrFail($id);
+        $arquivos = Arquivo::where('id_projeto', $projeto->id)->get();
+        
+        foreach ($arquivos as $arquivo) {
+            $caminhoArquivo = 'public/' . $arquivo->files;
+            
+             if (Storage::disk('local')->exists($caminhoArquivo)) {
+                Storage::disk('local')->delete($caminhoArquivo);
+            }
+        }
         $projeto->delete();
     
-        return redirect()->route('cliente.show', ['cliente' => $projeto->id_cliente])->with('success', 'Projeto excluído com sucesso!');
+        return redirect()->route('cliente.show', ['cliente' => $projeto->id_cliente])->with('success', 'Projeto e seus arquivos excluídos com sucesso!');
     }
 }
