@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Arquivo;
 
-use App\Http\Controllers\Controller;
+use App\Models\Arquivo;
+use App\Models\Projeto;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class ArquivoController extends Controller
 {
@@ -28,7 +31,37 @@ class ArquivoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validar os dados do formulário
+        $validatedData = $request->validate([
+            'nome' => 'required|string|max:255',
+            'descricao' => 'nullable|string',
+            'files' => 'required|file',
+            'id_projeto' => 'required|exists:projetos,id' // Garante que o id_projeto exista na tabela de projetos
+        ]);
+
+        // Obter o arquivo enviado do formulário
+        $arquivo = $request->file('files');
+
+        // Verificar se o arquivo foi enviado
+        if ($arquivo->isValid()) {
+            // Salvar o arquivo no diretório de armazenamento
+            $caminhoArquivo = $arquivo->store('arquivos', 'public');
+
+            // Criar uma nova instância de Arquivo com os dados do formulário
+            $novoArquivo = new Arquivo([
+                'nome' => $validatedData['nome'],
+                'descricao' => $validatedData['descricao'],
+                'files' => $caminhoArquivo,
+                'id_projeto' => $validatedData['id_projeto'],
+            ]);
+
+            // Salvar o arquivo no banco de dados
+            $novoArquivo->save();
+
+            return back()->with('success', 'Arquivo criado com sucesso!');
+        } else {
+            return back()->with('error', 'O arquivo não é válido.');
+        }
     }
 
     /**
@@ -36,8 +69,13 @@ class ArquivoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $projeto = Projeto::findOrFail($id);
+        $arquivos = Arquivo::where('id_projeto', $projeto->id)->get();
+        // Retorna a view com os arquivos do projeto.
+        return view('arquivo.show', compact('projeto', 'arquivos'));
     }
+    
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -58,8 +96,30 @@ class ArquivoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Arquivo $arquivo)
     {
-        //
+        // Verifique se o arquivo foi encontrado
+        if ($arquivo) {
+            // Obtenha o caminho do arquivo e remova o prefixo 'public/'
+            $caminhoArquivo = str_replace('public/', '', $arquivo->files);
+    
+            // Verifique se o arquivo existe no sistema de arquivos
+            if (Storage::disk('public')->exists($caminhoArquivo)) {
+                // Exclua o arquivo do sistema de arquivos
+                Storage::disk('public')->delete($caminhoArquivo);
+            } else {
+                // Se o arquivo não existir, retorne uma mensagem de erro
+                return back()->with('error', 'O arquivo não existe no sistema de arquivos.');
+            }
+    
+            // Exclua o registro do arquivo do banco de dados
+            $arquivo->delete();
+    
+            return back()->with('success', 'Arquivo excluído com sucesso.');
+        } else {
+            // Se o arquivo não for encontrado, retorne uma mensagem de erro
+            return back()->with('error', 'Arquivo não encontrado.');
+        }
     }
+    
 }

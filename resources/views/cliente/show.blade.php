@@ -14,7 +14,7 @@
                 <div class="card-header">
                   <h5 class="card-title text-uppercase text-center">{{ $cliente->nome }}</h5>
                 </div>
-                <div class="card-body text-center">
+                <div class="card-body text-center" style="height: 20vh">
                   <p class="card-text"><b>EMAIL:</b> {!! $cliente->email ? $cliente->email : '<i class="bi bi-dash-lg"></i>' !!}</p>
                   <p class="card-text"><b>RG:</b> {!! $cliente->rg ? $cliente->rg : '<i class="bi bi-dash-lg"></i>' !!}</p>
                   <p class="card-text"><b>CPF:</b> {!! $cliente->cpf ? $cliente->cpf : '<i class="bi bi-dash-lg"></i>' !!}</p>
@@ -30,33 +30,50 @@
           </div>
         </div>
         <div class="col">
-          <div class="card h-100 text-center shadow">
-            <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+          <div class="card text-center shadow">
+            <div class="card-header">
+              <h5 class="card-title">ULTIMAS ATUALIZAÇÕES</h5>
+            </div>
+            <div class="card-body overflow-auto" style="height: 20vh">
+              <div class="alert alert-primary">
+                <p class="card-text mb-0"><b>ARQUITETURA:</b> FABIO </p>
+                <p class="card-text mb-0"><b>PROJETO:</b> teste </p>
+                <p class="card-text"><b>ARQUIVO:</b> fachada - 06:30:12 </p>
+              </div>
+            </div>
+            <div class="card-footer">
+              <p class="card-text text-center">
+                <small class="text-muted">detalhes atualizados recentementes</small>
+              </p>
             </div>
           </div>
         </div>
         @if (auth()->user()->chefe)
           <div class="col">
-            <div class="card h-100 shadow">
-              <div class="card-body">
+            <div class="card shadow">
+              <div class="card-header">
                 <h5 class="card-title text-center">CONTROLE</h5>
-                <div class="d-grid col-6 mx-auto mt-4 gap-2">
-                  <button class="btn btn-primary create-projeto-button" data-cliente="{{ $cliente->id }}"
-                    type="button">NOVO PROJETO</button>
-                  <button class="btn btn-success" type="button">PAGAMENTO</button>
-                  <button class="btn btn-warning edit-button" type="button"
-                    data-cliente="{{ $cliente->id }}">EDITAR</button>
-                  <form id="deleteForm{{ $cliente->id }}"
-                    action="{{ route('cliente.destroy', ['cliente' => $cliente->id]) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-danger delete-button w-100" type="button"
-                      data-cliente="{{ $cliente->id }}">DELETAR</button>
-                  </form>
-                </div>
+              </div>
+              <div class="card-body"
+                style="height: 20vh; display: flex; flex-direction: column; justify-content: space-between;">
+                <button class="btn btn-primary create-projeto-button w-100" data-cliente="{{ $cliente->id }}"
+                  type="button">NOVO PROJETO</button>
+                <button class="btn btn-success w-100" type="button">PAGAMENTO</button>
+                <button class="btn btn-warning edit-button w-100" type="button"
+                  data-cliente="{{ $cliente->id }}">EDITAR</button>
+                <form id="deleteForm{{ $cliente->id }}"
+                  action="{{ route('cliente.destroy', ['cliente' => $cliente->id]) }}" method="POST">
+                  @csrf
+                  @method('DELETE')
+                  <button class="btn btn-danger delete-button w-100" type="button"
+                    data-cliente="{{ $cliente->id }}">DELETAR</button>
+                </form>
+              </div>
+
+              <div class="card-footer">
+                <p class="card-text text-center">
+                  <small class="text-muted">gerenciamento de projetos</small>
+                </p>
               </div>
             </div>
           </div>
@@ -127,7 +144,7 @@
                         </td>
                       @endif
                       <td>
-                        <a href="{{ route('cliente.show', ['cliente' => $cliente->id]) }}" class="btn btn-dark">
+                        <a href="{{ route('arquivo.show', ['projeto' => $projeto->id]) }}" class="btn btn-dark">
                           <i class="fs-4 bi bi-file-earmark-arrow-up-fill"></i>
                         </a>
                         @if (auth()->user()->chefe)

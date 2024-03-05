@@ -9,10 +9,13 @@ document.addEventListener("DOMContentLoaded", function () {
       var tituloProjeto = button.getAttribute("data-titulo");
       var descricaoProjetoElement =
         document.querySelector(".descricao-projeto");
-      var tituloTarefaElement = document.querySelector(".titulo-projeto");
+      var tituloProjetoElement = document.querySelector(".titulo-projeto");
 
       descricaoProjetoElement.textContent = descricaoProjeto;
-      tituloTarefaElement.textContent = tituloProjeto;
+      tituloProjetoElement.textContent = tituloProjeto;
+
+      var modal = new bootstrap.Modal(document.getElementById("showProjeto"));
+      modal.show();
     });
   });
 });

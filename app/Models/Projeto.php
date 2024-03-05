@@ -28,5 +28,10 @@ class Projeto extends Model
     {
         return $this->belongsTo(Cliente::class, 'id_cliente');
     }
+
+    public function arquivos()
+    {
+        return $this->hasMany(Arquivo::class);
+    }
     
 }
