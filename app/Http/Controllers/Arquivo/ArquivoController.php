@@ -42,11 +42,14 @@ class ArquivoController extends Controller
      */
     public function store(Request $request)
     {
+        // Aumentar o limite de tamanho de postagem
+        ini_set('post_max_size', '200M');
+        ini_set('upload_max_filesize', '200M');
+
         // Validar os dados do formulário
         $validatedData = $request->validate([
             'nome' => 'required|string|max:255',
             'descricao' => 'nullable|string',
-            'files' => 'required|file|max:102400',
             'id_projeto' => 'required|exists:projetos,id',
             'id_user' => 'required|exists:users,id',
             'categoria' => 'required|string'

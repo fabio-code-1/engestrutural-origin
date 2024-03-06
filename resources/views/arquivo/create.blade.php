@@ -2,7 +2,7 @@
 <div class="modal fade" id="create-arquivo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
   aria-labelledby="create-arquivoLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <form method="POST" action="{{ route('arquivo.store') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('arquivo.store') }}" enctype="multipart/form-data" id="formArquivo">
       @csrf
       <input type="hidden" name="id_projeto" value="{{ $projeto->id }}">
       <input type="hidden" name="id_user" value="{{ auth()->user()->id }}">
@@ -32,6 +32,5 @@
         </div>
       </div>
     </form>
-
   </div>
 </div>

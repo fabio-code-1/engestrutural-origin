@@ -19,23 +19,28 @@
         <a href="{{ route('tarefa.index') }}" class="nav-link fw-bolder text-light px-0 align-middle">
           <i class="fs-4 bi-table"></i> <span class="d-none d-sm-inline ms-1">TAREFAS</span></a>
       </li>
-      {{-- <li>
-        <a href="{{ route('ponto.index') }}" class="nav-link fw-bolder text-light px-0 align-middle">
-          <i class="fs-4 bi bi-clock-fill"></i> <span class="d-none d-sm-inline ms-1">PONTOS</span></a>
-      </li> --}}
-      {{-- <li>
-        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-          <i class="fs-4 bi-bootstrap"></i> <span class="d-none d-sm-inline ms-1">Bootstrap</span></a>
-        <ul class="nav flex-column collapse ms-1" id="submenu2" data-bs-parent="#menu">
-          <li class="w-100">
-            <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 1</a>
-          </li>
-          <li>
-            <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 2</a>
-          </li>
-        </ul>
-      </li> --}}
+
       @if (auth()->user()->chefe)
+        <li>
+          <a href="#admin" data-bs-toggle="collapse" class="nav-link fw-bolder text-light px-0 align-middle">
+            <i class="fs-4 bi bi-building"></i> <span class="d-none d-sm-inline ms-1">ADMINISTRAÇÃO</span>
+          </a>
+          <ul class="nav flex-column collapse ms-1" id="admin" data-bs-parent="#menu">
+            <li>
+              <a href="#" class="nav-link text-light px-0 align-middle">
+                &bull; <span class="d-none d-sm-inline ms-1">PONTOS</span></a>
+            </li>
+            <li>
+              <a href="#" class="nav-link text-light px-0 align-middle">
+                &bull; <span class="d-none d-sm-inline ms-1">FINANCEIRO</span></a>
+            </li>
+            <li>
+              <a href="#" class="nav-link text-light px-0 align-middle">
+                &bull; <span class="d-none d-sm-inline ms-1">CUSTOS FIXOS</span></a>
+            </li>
+          </ul>
+        </li>
+
         <li>
           <a href="{{ route('funcionario.index') }}" class="nav-link fw-bolder text-light px-0 align-middle">
             <i class="fs-4 bi bi-person-vcard-fill"></i></i><span class="d-none d-sm-inline ms-1">FUNCIONARIO</span>

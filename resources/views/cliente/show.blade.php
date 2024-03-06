@@ -14,7 +14,7 @@
                 <div class="card-header">
                   <h5 class="card-title text-uppercase text-center">{{ $cliente->nome }}</h5>
                 </div>
-                <div class="card-body text-center" style="height: 20vh">
+                <div class="card-body overflow-auto text-center" style="height: 20vh">
                   <p class="card-text"><b>EMAIL:</b> {!! $cliente->email ? $cliente->email : '<i class="bi bi-dash-lg"></i>' !!}</p>
                   <p class="card-text"><b>RG:</b> {!! $cliente->rg ? $cliente->rg : '<i class="bi bi-dash-lg"></i>' !!}</p>
                   <p class="card-text"><b>CPF:</b> {!! $cliente->cpf ? $cliente->cpf : '<i class="bi bi-dash-lg"></i>' !!}</p>
@@ -54,7 +54,7 @@
               <div class="card-header">
                 <h5 class="card-title text-center">CONTROLE</h5>
               </div>
-              <div class="card-body"
+              <div class="card-body overflow-auto"
                 style="height: 20vh; display: flex; flex-direction: column; justify-content: space-between;">
                 <button class="btn btn-primary create-projeto-button w-100" data-cliente="{{ $cliente->id }}"
                   type="button">NOVO PROJETO</button>

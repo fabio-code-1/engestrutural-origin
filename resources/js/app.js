@@ -21,3 +21,4 @@ import "./projeto/search-projeto";
 
 //arquivo
 import "./arquivo/show";
+import "./arquivo/store";
