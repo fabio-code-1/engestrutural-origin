@@ -144,7 +144,7 @@
                         </td>
                       @endif
                       <td>
-                        <a href="{{ route('arquivo.show', ['projeto' => $projeto->id]) }}" class="btn btn-dark">
+                        <a href="{{ route('arquivo.index', ['projeto' => $projeto->id]) }}" class="btn btn-dark">
                           <i class="fs-4 bi bi-file-earmark-arrow-up-fill"></i>
                         </a>
                         @if (auth()->user()->chefe)

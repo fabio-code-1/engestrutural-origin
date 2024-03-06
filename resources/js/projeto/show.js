@@ -11,7 +11,14 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector(".descricao-projeto");
       var tituloProjetoElement = document.querySelector(".titulo-projeto");
 
-      descricaoProjetoElement.textContent = descricaoProjeto;
+      // Verifica se há uma descrição para o projeto
+      if (descricaoProjeto) {
+        descricaoProjetoElement.textContent = descricaoProjeto;
+      } else {
+        descricaoProjetoElement.textContent =
+          "Este projeto não possui uma descrição.";
+      }
+
       tituloProjetoElement.textContent = tituloProjeto;
 
       var modal = new bootstrap.Modal(document.getElementById("showProjeto"));

@@ -13,9 +13,20 @@ class ArquivoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(string $id)
     {
-        return view('arquivo.index');
+        $projeto = Projeto::findOrFail($id);
+        $arquivos = Arquivo::where('id_projeto', $projeto->id)->get();
+     
+        $chefe = auth()->user()->chefe;
+        if ($chefe) {
+            $cargo = $chefe->cargo;
+        } else {
+            $funcionario = auth()->user()->funcionario;
+            $cargo = $funcionario->cargo;
+        }
+        
+        return view('arquivo.index', compact('projeto', 'arquivos', 'cargo'));
     }
 
     /**
@@ -35,7 +46,7 @@ class ArquivoController extends Controller
         $validatedData = $request->validate([
             'nome' => 'required|string|max:255',
             'descricao' => 'nullable|string',
-            'files' => 'required|file',
+            'files' => 'required|file|max:102400',
             'id_projeto' => 'required|exists:projetos,id',
             'id_user' => 'required|exists:users,id',
             'categoria' => 'required|string'
@@ -74,18 +85,7 @@ class ArquivoController extends Controller
      */
     public function show(string $id)
     {
-        $projeto = Projeto::findOrFail($id);
-        $arquivos = Arquivo::where('id_projeto', $projeto->id)->get();
-     
-        $chefe = auth()->user()->chefe;
-        if ($chefe) {
-            $cargo = $chefe->cargo;
-        } else {
-            $funcionario = auth()->user()->funcionario;
-            $cargo = $funcionario->cargo;
-        }
-        
-        return view('arquivo.show', compact('projeto', 'arquivos', 'cargo'));
+   //
     }
     
     

@@ -18,3 +18,6 @@ import "./projeto/create";
 import "./projeto/edit";
 import "./projeto/show";
 import "./projeto/search-projeto";
+
+//arquivo
+import "./arquivo/show";

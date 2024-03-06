@@ -18,17 +18,6 @@
                   <button class="btn btn-success fw-bolder w-100" aria-current="page" data-bs-toggle="modal"
                     data-bs-target="#create">ADICIONAR CLIENTE</button>
                 </li>
-                <li class="nav-item mb-lg-0 mx-2">
-                  <div class="dropdown">
-                    <button class="btn btn-light fw-bolder dropdown-toggle w-100" id="navbarDropdown" role="button"
-                      data-bs-toggle="dropdown" aria-expanded="false">
-                      CLIENTES
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="#">fsd</a></li>
-                    </ul>
-                  </div>
-                </li>
               </ul>
             </div>
           </div>
