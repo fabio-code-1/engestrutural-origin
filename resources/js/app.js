@@ -22,3 +22,6 @@ import "./projeto/search-projeto";
 //arquivo
 import "./arquivo/show";
 import "./arquivo/store";
+import "./arquivo/input-file";
+import "./arquivo/modalArquivo";
+import "./arquivo/butaoArquivo";
