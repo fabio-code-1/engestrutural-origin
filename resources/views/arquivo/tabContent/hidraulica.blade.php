@@ -15,7 +15,7 @@
                   download="{{ $arquivo->nome }}">
                   <i class="bi bi-download"></i>
                 </a>
-                @if (auth()->user()->chefe)
+                @if (auth()->user()->chefe || auth()->user()->id == $arquivo->id_user)
                   <form id="deleteForm" action="{{ route('arquivo.destroy', $arquivo) }}" method="POST">
                     @csrf
                     @method('DELETE')

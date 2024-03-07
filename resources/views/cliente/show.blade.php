@@ -8,7 +8,7 @@
           <div class="card mb-3 shadow" style="max-width: 100%;">
             <div class="row g-0">
               <div class="col-md-4">
-                <img src="/images/auth/sem-foto.gif" class="img-fluid h-100 border" alt="sem foto">
+                <img src="/images/auth/sem-foto.png" class="img-fluid h-100 border" alt="sem foto">
               </div>
               <div class="col-md-8">
                 <div class="card-header">
@@ -35,11 +35,35 @@
               <h5 class="card-title">ULTIMAS ATUALIZAÇÕES</h5>
             </div>
             <div class="card-body overflow-auto" style="height: 20vh">
-              <div class="alert alert-primary">
-                <p class="card-text mb-0"><b>ARQUITETURA:</b> FABIO </p>
-                <p class="card-text mb-0"><b>PROJETO:</b> teste </p>
-                <p class="card-text"><b>ARQUIVO:</b> fachada - 06:30:12 </p>
-              </div>
+              @foreach ($projetos as $projeto)
+                @foreach ($projeto->arquivos->sortByDesc('created_at') as $arquivo)
+                  <div class="alert alert-primary mb-1">
+                    <p class="card-text bg-dark text-light mb-0 text-center"><b>{{ $arquivo->user->name }}</b> </p>
+                    <p class="card-text mb-0"><b>CATEGORIA:</b> {{ $arquivo->categoria }}</p>
+                    <p class="card-text mb-0"><b>PROJETO:</b> {{ $projeto->nome }} </p>
+                    <p class="card-text mb-0"><b>ARQUIVO:</b> {{ $arquivo->nome }}</p>
+                    <p class="card-text"><b>POSTADO:</b> {{ $arquivo->created_at->format('d/m/Y H:i:s') }}</p>
+                  </div>
+                @endforeach
+              @endforeach
+              @if (
+                  $projetos->isEmpty() ||
+                      $projetos->every(function ($projeto) {
+                          return $projeto->arquivos->isEmpty();
+                      }))
+                <div class="alert alert-info mb-1">
+                  <p class="card-text">Não há arquivos para nenhum projeto hoje.</p>
+                </div>
+              @else
+                @foreach ($projetos as $projeto)
+                  @if ($projeto->arquivos->isEmpty())
+                    <div class="alert alert-info mb-1">
+                      <p class="card-text">Não há arquivos para o projeto "{{ $projeto->nome }}" hoje.</p>
+                    </div>
+                  @endif
+                @endforeach
+              @endif
+
             </div>
             <div class="card-footer">
               <p class="card-text text-center">

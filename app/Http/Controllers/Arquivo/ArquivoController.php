@@ -71,7 +71,7 @@ class ArquivoController extends Controller
                 'files' => $caminhoArquivo,
                 'id_projeto' => $validatedData['id_projeto'],
                 'id_user' => $validatedData['id_user'], 
-                'categoria' => $validatedData['categoria'] 
+                'categoria' => $validatedData['categoria'], 
             ]);
 
             // Salvar o arquivo no banco de dados

@@ -31,7 +31,8 @@ class Projeto extends Model
 
     public function arquivos()
     {
-        return $this->hasMany(Arquivo::class);
+        return $this->hasMany('App\Models\Arquivo', 'id_projeto', 'id');
     }
+    
     
 }

@@ -17,6 +17,11 @@
                 <button id="submitButton" class="btn btn-success fw-bolder w-100" aria-current="page"
                   data-bs-toggle="modal" data-bs-target="#create-arquivo">SUBIR ARQUIVO</button>
               </li>
+              <li class="nav-item mb-lg-0 mx-2 mb-2">
+                <a href="{{ route('cliente.show', ['cliente' => $projeto->id_cliente]) }}" class="btn btn-light">
+                  VOLTAR PERFIL
+                </a>
+              </li>
             </ul>
           </div>
         </div>

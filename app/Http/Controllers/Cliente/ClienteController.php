@@ -48,11 +48,24 @@ class ClienteController extends Controller
 
     public function show($id)
     {
+        // Definir o fuso horário para São Paulo
+        date_default_timezone_set('America/Sao_Paulo');
+    
+        // Obter a data de hoje no fuso horário de São Paulo
+        $dataHoje = now()->setTimezone('America/Sao_Paulo')->format('Y-m-d');
+    
+        // Recuperar os projetos do cliente
         $cliente = Cliente::findOrFail($id);
-        $projetos = $cliente->projetos; // Recupera todos os projetos associados a este cliente
-
+        $projetos = $cliente->projetos()->whereDate('created_at', $dataHoje)->get();
+    
+        // Iterar sobre os projetos e carregar apenas os arquivos do dia de hoje
+        foreach ($projetos as $projeto) {
+            $projeto->arquivos = $projeto->arquivos()->whereDate('created_at', $dataHoje)->get();
+        }
+    
         return view('cliente.show', compact('cliente', 'projetos'));
     }
+    
     
 
     public function edit(string $id)
