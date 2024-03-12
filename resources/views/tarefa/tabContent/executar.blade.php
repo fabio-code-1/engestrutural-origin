@@ -18,7 +18,9 @@
             @endphp
             <div
               class="card-header text-uppercase fw-bolder {{ $bgColor }} d-flex justify-content-between align-items-center">
-              <span>{{ $tarefa->titulo }}</span>
+              <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 200px;">
+                {{ $tarefa->titulo }}
+              </span>
               @if (auth()->user()->chefe)
                 <div class="d-flex">
                   <button class="btn btn-dark fw-bolder me-2" aria-current="page" data-bs-toggle="modal"
@@ -39,7 +41,6 @@
                 </div>
               @endif
             </div>
-
             <div class="card-body text-uppercase text-center">
               @if (auth()->user()->chefe)
                 <p class="card-text bg-secondary text-light fw-bolder">{{ $tarefa->funcionario->user->name }}</p>

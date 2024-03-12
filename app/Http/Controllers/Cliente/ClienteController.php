@@ -77,8 +77,8 @@ class ClienteController extends Controller
     {
 
         $request->validate([
-            'nome' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'nome' => 'nullable|string|max:255',
+            'email' => 'nullable|email|max:255',
             'cnpj' => 'nullable|string|max:20',
             'cpf' => 'nullable|string|max:14',
             'telefone' => 'nullable|string|max:20',
