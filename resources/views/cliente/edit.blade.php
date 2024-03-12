@@ -19,8 +19,7 @@
 
           <div class="form-group mb-4">
             <label for="email" class="form-label fw-bolder">EMAIL:</label>
-            <input type="email" id="email" name="email" class="form-control" value="{{ $cliente->email }}"
-              required>
+            <input type="email" id="email" name="email" class="form-control" value="{{ $cliente->email }}">
           </div>
 
           <div class="form-group mb-4">
