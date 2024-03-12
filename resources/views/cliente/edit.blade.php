@@ -24,8 +24,8 @@
           </div>
 
           <div class="form-group mb-4">
-            <label for="rg" class="form-label fw-bolder">RG:</label>
-            <input type="text" id="rg" name="rg" class="form-control" value="{{ $cliente->rg }}">
+            <label for="cnpj" class="form-label fw-bolder">CNPJ:</label>
+            <input type="text" id="cnpj" name="cnpj" class="form-control" value="{{ $cliente->cnpj }}">
           </div>
 
           <div class="form-group mb-4">

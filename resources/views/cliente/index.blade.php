@@ -34,7 +34,7 @@
             <th scope="col">#</th>
             <th scope="col">NOME</th>
             <th scope="col">EMAIL</th>
-            <th scope="col">RG</th>
+            <th scope="col">CNPJ</th>
             <th scope="col">CPF</th>
             <th scope="col">TELEFONE</th>
             <th scope="col">AÇÃO</th>
@@ -46,7 +46,7 @@
               <th scope="row">{{ $loop->iteration }}</th>
               <td>{{ $cliente->nome }}</td>
               <td>{!! $cliente->email ? $cliente->email : '<i class="bi bi-dash-lg"></i>' !!}</td>
-              <td>{!! $cliente->rg ? $cliente->rg : '<i class="bi bi-dash-lg"></i>' !!}</td>
+              <td>{!! $cliente->cnpj ? $cliente->cnpj : '<i class="bi bi-dash-lg"></i>' !!}</td>
               <td>{!! $cliente->cpf ? $cliente->cpf : '<i class="bi bi-dash-lg"></i>' !!}</td>
               <td>{!! $cliente->telefone ? $cliente->telefone : '<i class="bi bi-dash-lg"></i>' !!}</td>
               <td>

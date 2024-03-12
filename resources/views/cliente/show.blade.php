@@ -7,16 +7,13 @@
         <div class="col-6">
           <div class="card mb-3 shadow" style="max-width: 100%;">
             <div class="row g-0">
-              <div class="col-md-4">
-                <img src="/images/auth/sem-foto.png" class="img-fluid h-100 border" alt="sem foto">
-              </div>
-              <div class="col-md-8">
+              <div class="col-md-12">
                 <div class="card-header">
                   <h5 class="card-title text-uppercase text-center">{{ $cliente->nome }}</h5>
                 </div>
                 <div class="card-body overflow-auto text-center" style="height: 20vh">
                   <p class="card-text"><b>EMAIL:</b> {!! $cliente->email ? $cliente->email : '<i class="bi bi-dash-lg"></i>' !!}</p>
-                  <p class="card-text"><b>RG:</b> {!! $cliente->rg ? $cliente->rg : '<i class="bi bi-dash-lg"></i>' !!}</p>
+                  <p class="card-text"><b>CNPJ:</b> {!! $cliente->cnpj ? $cliente->cnpj : '<i class="bi bi-dash-lg"></i>' !!}</p>
                   <p class="card-text"><b>CPF:</b> {!! $cliente->cpf ? $cliente->cpf : '<i class="bi bi-dash-lg"></i>' !!}</p>
                   <p class="card-text"><b>TELEFONE:</b> {!! $cliente->telefone ? $cliente->telefone : '<i class="bi bi-dash-lg"></i>' !!}</p>
                 </div>
@@ -82,7 +79,7 @@
                 style="height: 20vh; display: flex; flex-direction: column; justify-content: space-between;">
                 <button class="btn btn-primary create-projeto-button w-100" data-cliente="{{ $cliente->id }}"
                   type="button">NOVO PROJETO</button>
-                <button class="btn btn-success w-100" type="button">PAGAMENTO</button>
+                <button class="btn btn-success w-100" type="button" disabled>PAGAMENTO</button>
                 <button class="btn btn-warning edit-button w-100" type="button"
                   data-cliente="{{ $cliente->id }}">EDITAR</button>
                 <form id="deleteForm{{ $cliente->id }}"

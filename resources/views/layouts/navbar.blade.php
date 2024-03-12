@@ -20,12 +20,12 @@
           <i class="fs-4 bi-table"></i> <span class="d-none d-sm-inline ms-1">TAREFAS</span></a>
       </li>
 
-      @if (auth()->user()->chefe)
-        <li>
-          <a href="#admin" data-bs-toggle="collapse" class="nav-link fw-bolder text-light px-0 align-middle">
-            <i class="fs-4 bi bi-building"></i> <span class="d-none d-sm-inline ms-1">ADMINISTRAÇÃO</span>
-          </a>
-          <ul class="nav flex-column collapse ms-1" id="admin" data-bs-parent="#menu">
+      <li>
+        <a href="#admin" data-bs-toggle="collapse" class="nav-link fw-bolder text-light px-0 align-middle">
+          <i class="fs-4 bi bi-building"></i> <span class="d-none d-sm-inline ms-1">ADMINISTRAÇÃO</span>
+        </a>
+        <ul class="nav flex-column collapse ms-1" id="admin" data-bs-parent="#menu">
+          @if (auth()->user()->chefe)
             <li>
               <a href="#" class="nav-link text-light px-0 align-middle">
                 &bull; <span class="d-none d-sm-inline ms-1">PONTOS</span></a>
@@ -38,9 +38,15 @@
               <a href="#" class="nav-link text-light px-0 align-middle">
                 &bull; <span class="d-none d-sm-inline ms-1">CUSTOS FIXOS</span></a>
             </li>
-          </ul>
-        </li>
+          @endif
+          <li>
+            <a href="#" class="nav-link text-light px-0 align-middle">
+              &bull; <span class="d-none d-sm-inline ms-1">HOLERITE</span></a>
+          </li>
+        </ul>
+      </li>
 
+      @if (auth()->user()->chefe)
         <li>
           <a href="{{ route('funcionario.index') }}" class="nav-link fw-bolder text-light px-0 align-middle">
             <i class="fs-4 bi bi-person-vcard-fill"></i></i><span class="d-none d-sm-inline ms-1">FUNCIONARIO</span>
@@ -52,7 +58,7 @@
     <div class="dropdown pb-4">
       <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle text-white"
         id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
+        <img src="/images/auth/user-profile.jpg" alt="hugenerd" width="30" height="30" class="rounded-circle">
         <span class="d-none d-sm-inline fw-bolder mx-1">{{ ucwords(Auth::user()->name) }}</span>
       </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow">

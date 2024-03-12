@@ -6,7 +6,7 @@
       @csrf
       <div class="modal-content">
         <div class="modal-header bg-dark text-light">
-          <h5 class="modal-title" id="createLabel">NOVA CLIENTE</h5>
+          <h5 class="modal-title" id="createLabel">NOVO CLIENTE</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -21,8 +21,8 @@
           </div>
 
           <div class="form-group mb-4">
-            <label for="rg" class="form-label fw-bolder">RG:</label>
-            <input type="text" id="rg" name="rg" class="form-control">
+            <label for="cnpj" class="form-label fw-bolder">CNPJ:</label>
+            <input type="text" id="cnpj" name="cnpj" class="form-control">
           </div>
 
           <div class="form-group mb-4">
@@ -38,7 +38,7 @@
         </div>
         <div class="modal-footer bg-dark">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">CANCELAR</button>
-          <button type="submit" class="btn btn-success">CRIAR TAREFA</button>
+          <button type="submit" class="btn btn-success">CRIAR CLIENTE</button>
         </div>
       </div>
     </form>

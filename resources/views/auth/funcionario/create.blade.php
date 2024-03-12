@@ -47,7 +47,8 @@
 
       <div class="mb-4">
         <label for="salario" class="fw-bolder text-secondary">SALÁRIO:</label>
-        <input id="salario" type="number" step="0.01" class="form-control" name="salario" autocomplete="salario">
+        <input id="salario" type="number" step="0.01" class="form-control" name="salario" autocomplete="salario"
+          required>
       </div>
 
       <div class="d-grid col-6 mx-auto mt-4 gap-2">

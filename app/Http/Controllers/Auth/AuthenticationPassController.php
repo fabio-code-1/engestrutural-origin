@@ -15,7 +15,7 @@ class AuthenticationPassController extends Controller
     public function authenticate(Request $request)
     {
         $password = $request->input('password');
-        if ($password === '123') {
+        if ($password === 'pEATic@kURaPT') {
             $request->session()->put('authenticated', true);
             return redirect()->route('register');
         } else {

@@ -9,8 +9,8 @@ import "./tarefa/edit";
 
 //cliente
 import "./cliente/create";
-import "./cliente/delete";
 import "./cliente/edit";
+import "./cliente/delete";
 import "./cliente/search-cliente";
 
 //projeto

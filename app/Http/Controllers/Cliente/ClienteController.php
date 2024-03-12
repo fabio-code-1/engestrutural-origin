@@ -28,7 +28,7 @@ class ClienteController extends Controller
         $request->validate([
             'nome' => 'required|string|max:255',
             'email' => 'nullable|email|max:255',
-            'rg' => 'nullable|string|max:20',
+            'cnpj' => 'nullable|string|max:20',
             'cpf' => 'nullable|string|max:14',
             'telefone' => 'nullable|string|max:15',
         ]);
@@ -37,7 +37,7 @@ class ClienteController extends Controller
         $cliente = new Cliente();
         $cliente->nome = $request->nome;
         $cliente->email = $request->email;
-        $cliente->rg = $request->rg;
+        $cliente->cnpj = $request->cnpj;
         $cliente->cpf = $request->cpf;
         $cliente->telefone = $request->telefone;
         $cliente->save();
@@ -79,7 +79,7 @@ class ClienteController extends Controller
         $request->validate([
             'nome' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'rg' => 'nullable|string|max:20',
+            'cnpj' => 'nullable|string|max:20',
             'cpf' => 'nullable|string|max:14',
             'telefone' => 'nullable|string|max:20',
         ]);
@@ -90,7 +90,7 @@ class ClienteController extends Controller
 
         $cliente->nome = $request->input('nome');
         $cliente->email = $request->input('email');
-        $cliente->rg = $request->input('rg');
+        $cliente->cnpj = $request->input('cnpj');
         $cliente->cpf = $request->input('cpf');
         $cliente->telefone = $request->input('telefone');
     

@@ -13,7 +13,7 @@
             @csrf
             <div>
               <label for="password" class="fw-bolder text-secondary">SENHA:</label>
-              <input class="form-control" type="password" name="password" id="password" placeholder="Digite a sehna...">
+              <input class="form-control" type="password" name="password" id="password" placeholder="Digite a senha...">
             </div>
             <div class="d-grid col-6 mx-auto mt-4 gap-2">
               <button class="btn btn-dark fw-bolder" type="submit">ENTRAR</button>
