@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use App\Models\Tarefa;
+use App\Models\Arquivo;
 use App\Models\Funcionario;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class FuncionarioController extends Controller
 {
@@ -81,9 +84,32 @@ class FuncionarioController extends Controller
         //
     }
 
-    
+
+
     public function destroy(string $id)
     {
-        //
+        $funcionario = Funcionario::find($id);
+
+        if ($funcionario) {
+            $user = User::find($funcionario->user_id);
+            $loggedInUserId = Auth::user()->id;
+
+            if ($user) {
+                $arquivos = Arquivo::where('id_user', $user->id)->get();
+
+                foreach ($arquivos as $arquivo) {
+                    $arquivo->id_user = $loggedInUserId;
+                    $arquivo->save();
+                }
+
+                $funcionario->delete();
+                $user->delete();
+
+                return back()->with('success', 'Usuário e arquivos deletados com sucesso');
+            }
+        }
+
+        return back()->with('error', 'Usuário não encontrado');
     }
+
 }

@@ -12,6 +12,7 @@ Route::middleware('auth')->group(function () {
   Route::get('/funcionario', [FuncionarioController::class, 'index'])->name('funcionario.index');
   Route::get('/funcionario/create', [FuncionarioController::class, 'create'])->name('funcionario.create');
   Route::post('/funcionario/store', [FuncionarioController::class, 'store'])->name('funcionario.store');
+  Route::delete('/funcionario/{id}', [FuncionarioController::class, 'destroy'])->name('funcionario.destroy');
 });
 
 Route::get('/authentication/pass', [AuthenticationPassController::class, 'index'])->name('authentication.pass');
