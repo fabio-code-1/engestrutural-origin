@@ -135,7 +135,8 @@
                   @foreach ($projetos as $projeto)
                     <tr class="text-center align-middle">
                       <th scope="row">{{ $loop->iteration }}</th>
-                      <td>{{ $projeto->nome }}</td>
+                      <td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 200px;">
+                        {{ $projeto->nome }}</td>
                       <td>
                         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#showProjeto"
                           data-descricao="{{ $projeto->descricao }}" data-titulo="{{ $projeto->nome }}">

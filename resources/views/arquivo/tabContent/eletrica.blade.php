@@ -9,7 +9,9 @@
         <div class="col mb-4">
           <div class="card">
             <div class="card-header text-uppercase fw-bolder d-flex justify-content-between align-items-center">
-              <span>{{ $arquivo->user->name }}</span>
+              <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 200px;">
+                {{ $arquivo->user->name }}
+              </span>
               <div class="d-flex">
                 <a class="btn btn-dark me-2" href="{{ asset('storage/' . $arquivo->files) }}"
                   download="{{ $arquivo->nome . '.' . pathinfo($arquivo->files, PATHINFO_EXTENSION) }}">

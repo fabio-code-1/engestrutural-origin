@@ -9,7 +9,9 @@
         <div class="col mb-4">
           <div class="card">
             <div class="card-header text-uppercase fw-bolder d-flex justify-content-between align-items-center">
-              <span>{{ $arquivo->user->name }}</span>
+              <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 200px;">
+                {{ $arquivo->user->name }}
+              </span>
               <div class="d-flex">
                 <a class="btn btn-dark me-2" href="{{ asset('storage/' . $arquivo->files) }}"
                   download="{{ $arquivo->nome . '.' . pathinfo($arquivo->files, PATHINFO_EXTENSION) }}">
@@ -27,7 +29,9 @@
               </div>
             </div>
             <div class="card-body text-uppercase text-center">
-              <p class="card-text bg-secondary text-light fw-bolder">{{ $arquivo->nome }}</p>
+              <p class="card-text bg-secondary text-light fw-bolder"
+                style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 200px;">
+                {{ $arquivo->nome }}</p>
               <p class="card-text fw-bolder mb-0">POSTADO</p>
               <p class="card-text">{{ $arquivo->created_at->format('d/m/Y H:i:s') }}</p>
               <p class="card-text fw-bolder mb-0">descrição</p>
