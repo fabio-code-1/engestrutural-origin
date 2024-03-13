@@ -54,15 +54,20 @@ class ArquivoController extends Controller
             'id_user' => 'required|exists:users,id',
             'categoria' => 'required|string'
         ]);
-        
 
         // Obter o arquivo enviado do formulário
         $arquivo = $request->file('files');
 
         // Verificar se o arquivo foi enviado
         if ($arquivo->isValid()) {
-            // Salvar o arquivo no diretório de armazenamento
-            $caminhoArquivo = $arquivo->store('arquivos', 'public');
+            // Obter a extensão original do arquivo
+            $extensao = $arquivo->getClientOriginalExtension();
+
+            // Gerar um nome único para o arquivo
+            $nomeArquivo = uniqid() . '.' . $extensao;
+
+            // Salvar o arquivo no diretório de armazenamento com o nome único
+            $caminhoArquivo = $arquivo->storeAs('arquivos', $nomeArquivo, 'public');
 
             // Criar uma nova instância de Arquivo com os dados do formulário
             $novoArquivo = new Arquivo([

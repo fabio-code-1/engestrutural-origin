@@ -12,7 +12,7 @@
               <span>{{ $arquivo->user->name }}</span>
               <div class="d-flex">
                 <a class="btn btn-dark me-2" href="{{ asset('storage/' . $arquivo->files) }}"
-                  download="{{ $arquivo->nome }}">
+                  download="{{ $arquivo->nome . '.' . pathinfo($arquivo->files, PATHINFO_EXTENSION) }}">
                   <i class="bi bi-download"></i>
                 </a>
                 @if (auth()->user()->chefe || auth()->user()->id == $arquivo->id_user)
