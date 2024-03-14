@@ -166,18 +166,21 @@
                         </td>
                       @endif
                       <td>
-                        <a href="{{ route('arquivo.index', ['projeto' => $projeto->id]) }}" class="btn btn-dark">
+                        <a href="{{ route('arquivo.index', ['projeto' => $projeto->id]) }}"
+                          class="btn btn-dark btn-sm">
                           <i class="fs-4 bi bi-file-earmark-arrow-up-fill"></i>
                         </a>
                         @if (auth()->user()->chefe)
-                          <button class="btn btn-warning edit-projeto-button" data-projeto="{{ $projeto->id }}">
+                          <button class="btn btn-warning edit-projeto-button btn-sm"
+                            data-projeto="{{ $projeto->id }}">
                             <i class="fs-4 bi bi-pencil-fill"></i>
                           </button>
 
-                          <a href="{{ route('projeto.destroy', ['projeto' => $projeto->id]) }}" class="btn btn-danger"
+                          <button href="{{ route('projeto.destroy', ['projeto' => $projeto->id]) }}"
+                            class="btn btn-danger btn-sm"
                             onclick="event.preventDefault(); if(confirm('Tem certeza que deseja excluir este projeto?')) document.getElementById('delete-form-{{ $projeto->id }}').submit();">
                             <i class="bi bi-trash3-fill fs-4"></i>
-                          </a>
+                          </button>
                           <form id="delete-form-{{ $projeto->id }}"
                             action="{{ route('projeto.destroy', ['projeto' => $projeto->id]) }}" method="POST"
                             style="display: none;">
