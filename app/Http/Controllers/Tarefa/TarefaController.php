@@ -163,4 +163,29 @@ class TarefaController extends Controller
         return redirect()->back()->with('success', 'Status da tarefa atualizado com sucesso.');
     }
 
+
+
+    public function filtrarPorFuncionario($funcionario_id)
+    {
+        $funcionarios = Funcionario::all();
+        $tarefas = Tarefa::query();
+        
+        $chefe = auth()->user()->chefe;
+        $cargos = [$chefe->cargo];
+        if ($chefe->cargo === 'engenheiro') {
+            $cargos = ['engenheiro', 'elétrica', 'hidráulica'];
+        } else if ($chefe->cargo === 'arquiteto') {
+            $cargos = ['arquiteto'];
+        }
+
+        $funcionarios = Funcionario::whereIn('cargo', $cargos)->get();
+
+        if ($funcionario_id) {
+            $tarefas->where('funcionario_id', $funcionario_id);
+        }
+
+        $tarefas = $tarefas->get();
+
+        return view('tarefa.index', compact('tarefas', 'funcionarios'));
+    }
 }

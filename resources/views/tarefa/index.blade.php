@@ -33,7 +33,12 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                       @foreach ($funcionarios as $funcionario)
-                        <li><a class="dropdown-item" href="#">{{ $funcionario->user->name }}</a></li>
+                        <li>
+                          <a class="dropdown-item {{ request('funcionario_id') == $funcionario->id ? 'active' : '' }}"
+                            href="{{ route('tarefas.filtrar_por_funcionario', ['funcionario_id' => $funcionario->id]) }}">
+                            {{ $funcionario->user->name }}
+                          </a>
+                        </li>
                       @endforeach
                     </ul>
                   </div>
@@ -45,32 +50,67 @@
       @endif
       <ul id="tarefa" role="tablist"
         class="nav nav-tabs nav-pills with-arrow lined flex-column flex-sm-row text-center">
-        <li class="nav-item flex-sm-fill">
+        <li class="nav-item flex-sm-fill position-relative">
           <a id="executar-tab" href="{{ route('tarefa.selecionar_aba', ['aba' => 'executar']) }}" role="tab"
             aria-controls="executar" aria-selected="{{ session('active_tab_tarefa') == 'executar' ? 'true' : 'false' }}"
-            class="nav-link text-uppercase rounded-0 fw-bolder {{ !session('active_tab_tarefa') || session('active_tab_tarefa') == 'executar' ? 'active' : '' }}">Executar</a>
+            class="nav-link text-uppercase rounded-0 fw-bolder {{ !session('active_tab_tarefa') || session('active_tab_tarefa') == 'executar' ? 'active' : '' }}">
+            Executar
+            @if (count($tarefas->where('status', 'executar')) > 0)
+              <span class="position-absolute start-50 translate-middle badge rounded-pill bg-danger top-0">
+                {{ count($tarefas->where('status', 'executar')) }}
+              </span>
+            @endif
+          </a>
         </li>
-        <li class="nav-item flex-sm-fill">
+        <li class="nav-item flex-sm-fill position-relative">
           <a id="executando-tab" href="{{ route('tarefa.selecionar_aba', ['aba' => 'executando']) }}" role="tab"
             aria-controls="executando"
             aria-selected="{{ session('active_tab_tarefa') == 'executando' ? 'true' : 'false' }}"
-            class="nav-link text-uppercase rounded-0 fw-bolder {{ session('active_tab_tarefa') == 'executando' ? 'active' : '' }}">Executando</a>
+            class="nav-link text-uppercase rounded-0 fw-bolder {{ session('active_tab_tarefa') == 'executando' ? 'active' : '' }}">
+            Executando
+            @if (count($tarefas->where('status', 'executando')) > 0)
+              <span class="position-absolute start-50 translate-middle badge rounded-pill bg-danger top-0">
+                {{ count($tarefas->where('status', 'executando')) }}
+              </span>
+            @endif
+          </a>
         </li>
-        <li class="nav-item flex-sm-fill">
+        <li class="nav-item flex-sm-fill position-relative">
           <a id="pendente-tab" href="{{ route('tarefa.selecionar_aba', ['aba' => 'pendente']) }}" role="tab"
             aria-controls="pendente" aria-selected="{{ session('active_tab_tarefa') == 'pendente' ? 'true' : 'false' }}"
-            class="nav-link text-uppercase rounded-0 fw-bolder {{ session('active_tab_tarefa') == 'pendente' ? 'active' : '' }}">Pendente</a>
+            class="nav-link text-uppercase rounded-0 fw-bolder {{ session('active_tab_tarefa') == 'pendente' ? 'active' : '' }}">
+            Pendente
+            @if (count($tarefas->where('status', 'pendente')) > 0)
+              <span class="position-absolute start-50 translate-middle badge rounded-pill bg-danger top-0">
+                {{ count($tarefas->where('status', 'pendente')) }}
+              </span>
+            @endif
+          </a>
         </li>
-        <li class="nav-item flex-sm-fill">
+        <li class="nav-item flex-sm-fill position-relative">
           <a id="finalizado-tab" href="{{ route('tarefa.selecionar_aba', ['aba' => 'finalizado']) }}" role="tab"
             aria-controls="finalizado"
             aria-selected="{{ session('active_tab_tarefa') == 'finalizado' ? 'true' : 'false' }}"
-            class="nav-link text-uppercase rounded-0 fw-bolder {{ session('active_tab_tarefa') == 'finalizado' ? 'active' : '' }}">Finalizado</a>
+            class="nav-link text-uppercase rounded-0 fw-bolder {{ session('active_tab_tarefa') == 'finalizado' ? 'active' : '' }}">
+            Finalizado
+            @if (count($tarefas->where('status', 'finalizado')) > 0)
+              <span class="position-absolute start-50 translate-middle badge rounded-pill bg-danger top-0">
+                {{ count($tarefas->where('status', 'finalizado')) }}
+              </span>
+            @endif
+          </a>
         </li>
-        <li class="nav-item flex-sm-fill">
+        <li class="nav-item flex-sm-fill position-relative">
           <a id="correcao-tab" href="{{ route('tarefa.selecionar_aba', ['aba' => 'correcao']) }}" role="tab"
             aria-controls="correcao" aria-selected="{{ session('active_tab_tarefa') == 'correcao' ? 'true' : 'false' }}"
-            class="nav-link text-uppercase rounded-0 fw-bolder {{ session('active_tab_tarefa') == 'correcao' ? 'active' : '' }}">Correção</a>
+            class="nav-link text-uppercase rounded-0 fw-bolder {{ session('active_tab_tarefa') == 'correcao' ? 'active' : '' }}">
+            Correção
+            @if (count($tarefas->where('status', 'correcao')) > 0)
+              <span class="position-absolute start-50 translate-middle badge rounded-pill bg-danger top-0">
+                {{ count($tarefas->where('status', 'correcao')) }}
+              </span>
+            @endif
+          </a>
         </li>
       </ul>
       <div id="tarefaContent" class="tab-content">

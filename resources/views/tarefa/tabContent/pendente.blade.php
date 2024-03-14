@@ -18,6 +18,14 @@
             @endphp
             <div
               class="card-header text-uppercase fw-bolder {{ $bgColor }} d-flex justify-content-between align-items-center">
+              @php
+                $dataAtual = date('Y-m-d');
+              @endphp
+
+              @if ($dataAtual > $tarefa->prazo)
+                <div class="spinner-grow text-danger" role="status" style="position: absolute; top: -15px; left: -10px;">
+                </div>
+              @endif
               <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 200px;">
                 {{ $tarefa->titulo }}
               </span>

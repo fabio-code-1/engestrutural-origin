@@ -9,7 +9,7 @@ Route::middleware('auth')->group(function () {
   Route::put('/tarefa/update', [TarefaController::class, 'update'])->name('tarefa.update');
   Route::put('/tarefas/{tarefa}', [TarefaController::class, 'updateStatus'])->name('tarefa.updatestatus');
   Route::get('/tarefa/selecionar-aba/{aba}', [TarefaController::class, 'selecionarAba'])->name('tarefa.selecionar_aba');
-
+  Route::get('/tarefas/filtrar/{funcionario_id}', [TarefaController::class, 'filtrarPorFuncionario'])->name('tarefas.filtrar_por_funcionario');
 });
 
 
