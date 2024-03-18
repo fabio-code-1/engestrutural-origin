@@ -31,7 +31,7 @@
                 &bull; <span class="d-none d-sm-inline ms-1">PONTOS</span></a>
             </li>
             <li>
-              <a href="#" class="nav-link text-light px-0 align-middle">
+              <a href="{{ route('financeiro.index') }}" class="nav-link text-light px-0 align-middle">
                 &bull; <span class="d-none d-sm-inline ms-1">FINANCEIRO</span></a>
             </li>
             <li>

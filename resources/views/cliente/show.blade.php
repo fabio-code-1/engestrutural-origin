@@ -79,7 +79,6 @@
                 style="height: 20vh; display: flex; flex-direction: column; justify-content: space-between;">
                 <button class="btn btn-primary create-projeto-button w-100" data-cliente="{{ $cliente->id }}"
                   type="button">NOVO PROJETO</button>
-                <button class="btn btn-success w-100" type="button" disabled>PAGAMENTO</button>
                 <button class="btn btn-warning edit-button w-100" type="button"
                   data-cliente="{{ $cliente->id }}">EDITAR</button>
                 <form id="deleteForm{{ $cliente->id }}"
@@ -166,8 +165,7 @@
                         </td>
                       @endif
                       <td>
-                        <a href="{{ route('arquivo.index', ['projeto' => $projeto->id]) }}"
-                          class="btn btn-dark btn-sm">
+                        <a href="{{ route('arquivo.index', ['projeto' => $projeto->id]) }}" class="btn btn-dark btn-sm">
                           <i class="fs-4 bi bi-file-earmark-arrow-up-fill"></i>
                         </a>
                         @if (auth()->user()->chefe)

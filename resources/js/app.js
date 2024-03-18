@@ -25,3 +25,6 @@ import "./arquivo/store";
 import "./arquivo/input-file";
 import "./arquivo/modalArquivo";
 import "./arquivo/butaoArquivo";
+
+//financeiro
+import "./financeiro/grafico-financeiro-venda";

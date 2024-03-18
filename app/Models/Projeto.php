@@ -20,7 +20,6 @@ class Projeto extends Model
         'valor_hidraulica',
         'valor_eletrica',
         'status',
-        'localizacao',
         'id_cliente',
     ];
 
