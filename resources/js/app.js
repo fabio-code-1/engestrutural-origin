@@ -1,5 +1,6 @@
 import "./bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import "./input-mask";
 
 //tarefa
 import "./tarefa/show";

@@ -8,7 +8,6 @@
       <div class="modal-content">
         <div class="modal-header bg-dark text-light">
           <h5 class="modal-title" id="editModalLabel{{ $cliente->id }}">EDITAR CLIENTE</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div class="form-group mb-4">
@@ -24,17 +23,20 @@
 
           <div class="form-group mb-4">
             <label for="cnpj" class="form-label fw-bolder">CNPJ:</label>
-            <input type="text" id="cnpj" name="cnpj" class="form-control" value="{{ $cliente->cnpj }}">
+            <input type="text" id="cnpj" name="cnpj" class="form-control input-cnpj"
+              value="{{ $cliente->cnpj }}">
           </div>
 
           <div class="form-group mb-4">
             <label for="cpf" class="form-label fw-bolder">CPF:</label>
-            <input type="text" id="cpf" name="cpf" class="form-control" value="{{ $cliente->cpf }}">
+            <input type="text" id="cpf" name="cpf" class="form-control input-cpf"
+              value="{{ $cliente->cpf }}">
           </div>
 
           <div class="form-group">
             <label for="telefone" class="form-label fw-bolder">TELEFONE:</label>
-            <input type="tel" id="telefone" name="telefone" class="form-control" value="{{ $cliente->telefone }}">
+            <input type="tel" id="telefone" name="telefone" class="form-control input-telefone"
+              value="{{ $cliente->telefone }}">
           </div>
         </div>
         <div class="modal-footer bg-dark">

@@ -158,10 +158,17 @@
                         <td>{!! $projeto->valor_estrutural ? $projeto->valor_estrutural : '<i class="bi bi-dash-lg"></i>' !!}</td>
                         <td>{!! $projeto->valor_hidraulica ? $projeto->valor_hidraulica : '<i class="bi bi-dash-lg"></i>' !!}</td>
                         <td>{!! $projeto->valor_eletrica ? $projeto->valor_eletrica : '<i class="bi bi-dash-lg"></i>' !!}</td>
-                        <td>{!! $projeto->valor_arquitetonico +
-                            $projeto->valor_estrutural +
-                            $projeto->valor_hidraulica +
-                            $projeto->valor_eletrica !!}
+                        <td>
+                          {{ "R$ " .
+                              number_format(
+                                  preg_replace('/[^0-9.]/', '', $projeto->valor_arquitetonico) +
+                                      preg_replace('/[^0-9.]/', '', $projeto->valor_estrutural) +
+                                      preg_replace('/[^0-9.]/', '', $projeto->valor_hidraulica) +
+                                      preg_replace('/[^0-9.]/', '', $projeto->valor_eletrica),
+                                  2,
+                                  ',',
+                                  '.',
+                              ) }}
                         </td>
                       @endif
                       <td>

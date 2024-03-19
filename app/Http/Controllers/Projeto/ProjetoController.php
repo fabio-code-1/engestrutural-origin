@@ -36,10 +36,10 @@ class ProjetoController extends Controller
         $request->validate([
             'nome' => 'required|string|max:255',
             'descricao' => 'nullable|string',
-            'valor_arquitetonico' => 'nullable|numeric',
-            'valor_estrutural' => 'nullable|numeric',
-            'valor_hidraulica' => 'nullable|numeric',
-            'valor_eletrica' => 'nullable|numeric',
+            'valor_arquitetonico' => 'nullable|string',
+            'valor_estrutural' => 'nullable|string',
+            'valor_hidraulica' => 'nullable|string',
+            'valor_eletrica' => 'nullable|string',
             'cliente_id' => 'required|exists:clientes,id', // Verifica se o cliente com esse ID existe
         ]);
     
@@ -83,10 +83,10 @@ class ProjetoController extends Controller
         $request->validate([
             'nome' => 'required|string|max:255',
             'descricao' => 'nullable|string',
-            'valor_arquitetonico' => 'nullable|numeric',
-            'valor_estrutural' => 'nullable|numeric',
-            'valor_hidraulica' => 'nullable|numeric',
-            'valor_eletrica' => 'nullable|numeric',
+            'valor_arquitetonico' => 'nullable|string',
+            'valor_estrutural' => 'nullable|string',
+            'valor_hidraulica' => 'nullable|string',
+            'valor_eletrica' => 'nullable|string',
         ]);
     
         $projeto = Projeto::findOrFail($id);

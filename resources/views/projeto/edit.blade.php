@@ -34,25 +34,25 @@
 
             <div class="form-group mb-4">
               <label for="valor_arquitetonico" class="form-label fw-bolder">VALOR ARQUITETÔNICO:</label>
-              <input type="number" class="form-control" id="valor_arquitetonico" name="valor_arquitetonico"
-                step="0.01" value="{{ $projeto->valor_arquitetonico }}">
+              <input type="text" class="form-control input-valor" id="valor_arquitetonico" name="valor_arquitetonico"
+                value="{{ $projeto->valor_arquitetonico }}">
             </div>
 
             <div class="form-group mb-4">
               <label for="valor_estrutural" class="form-label fw-bolder">VALOR ESTRUTURAL:</label>
-              <input type="number" class="form-control" id="valor_estrutural" name="valor_estrutural" step="0.01"
+              <input type="text" class="form-control input-valor" id="valor_estrutural" name="valor_estrutural"
                 value="{{ $projeto->valor_estrutural }}">
             </div>
 
             <div class="form-group mb-4">
               <label for="valor_hidraulica" class="form-label fw-bolder">VALOR HIDRAULICA:</label>
-              <input type="number" class="form-control" id="valor_hidraulica" name="valor_hidraulica" step="0.01"
+              <input type="text" class="form-control input-valor" id="valor_hidraulica" name="valor_hidraulica"
                 value="{{ $projeto->valor_hidraulica }}">
             </div>
 
             <div class="form-group mb-4">
               <label for="valor_eletrica" class="form-label fw-bolder">VALOR ELETRICA:</label>
-              <input type="number" class="form-control" id="valor_eletrica" name="valor_eletrica" step="0.01"
+              <input type="text" class="form-control input-valor" id="valor_eletrica" name="valor_eletrica"
                 value="{{ $projeto->valor_eletrica }}">
             </div>
           </div>

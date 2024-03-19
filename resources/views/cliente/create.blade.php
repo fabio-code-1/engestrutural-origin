@@ -22,17 +22,17 @@
 
           <div class="form-group mb-4">
             <label for="cnpj" class="form-label fw-bolder">CNPJ:</label>
-            <input type="text" id="cnpj" name="cnpj" class="form-control">
+            <input type="text" id="cnpj" name="cnpj" class="form-control input-cnpj">
           </div>
 
           <div class="form-group mb-4">
             <label for="cpf" class="form-label fw-bolder">CPF:</label>
-            <input type="text" id="cpf" name="cpf" class="form-control">
+            <input type="text" id="cpf" name="cpf" class="form-control input-cpf">
           </div>
 
           <div class="form-group">
             <label for="telefone" class="form-label fw-bolder">TELEFONE:</label>
-            <input type="tel" id="telefone" name="telefone" class="form-control">
+            <input type="text" id="telefone" name="telefone" class="form-control input-telefone">
           </div>
 
         </div>
