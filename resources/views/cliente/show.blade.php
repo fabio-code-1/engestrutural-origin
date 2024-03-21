@@ -79,6 +79,9 @@
                 style="height: 20vh; display: flex; flex-direction: column; justify-content: space-between;">
                 <button class="btn btn-primary create-projeto-button w-100" data-cliente="{{ $cliente->id }}"
                   type="button">NOVO PROJETO</button>
+                <a href="{{ route('pagamento.index', ['cliente' => $cliente->id]) }}" class="btn btn-success">
+                  PAGAMENTO
+                </a>
                 <button class="btn btn-warning edit-button w-100" type="button"
                   data-cliente="{{ $cliente->id }}">EDITAR</button>
                 <form id="deleteForm{{ $cliente->id }}"
@@ -107,13 +110,12 @@
                 <div class="container-fluid d-flex align-items-center">
                   <h3 class="navbar-brand text-uppercase fw-bolder">Projetos do Cliente</h3>
                   <div class="d-flex">
-                    <input class="form-control me-2" type="search" id="searchInputProjeto"
-                      placeholder="Pesquisar projeto...">
+                    <input class="form-control me-2" type="search" id="searchInput" placeholder="Pesquisar projeto...">
                   </div>
                 </div>
               </nav>
 
-              <table class="table-light table shadow" id="projeto_table">
+              <table class="table-light table shadow" id="search_table">
                 <thead class="table-primary">
                   <tr class="text-center align-middle">
                     <th scope="col">#</th>
@@ -161,10 +163,10 @@
                         <td>
                           {{ "R$ " .
                               number_format(
-                                  preg_replace('/[^0-9.]/', '', $projeto->valor_arquitetonico) +
-                                      preg_replace('/[^0-9.]/', '', $projeto->valor_estrutural) +
-                                      preg_replace('/[^0-9.]/', '', $projeto->valor_hidraulica) +
-                                      preg_replace('/[^0-9.]/', '', $projeto->valor_eletrica),
+                                  preg_replace('/[^0-9.]/', '', $projeto->valor_arquitetonico ?? 0) +
+                                      preg_replace('/[^0-9.]/', '', $projeto->valor_estrutural ?? 0) +
+                                      preg_replace('/[^0-9.]/', '', $projeto->valor_hidraulica ?? 0) +
+                                      preg_replace('/[^0-9.]/', '', $projeto->valor_eletrica ?? 0),
                                   2,
                                   ',',
                                   '.',
@@ -172,7 +174,8 @@
                         </td>
                       @endif
                       <td>
-                        <a href="{{ route('arquivo.index', ['projeto' => $projeto->id]) }}" class="btn btn-dark btn-sm">
+                        <a href="{{ route('arquivo.index', ['projeto' => $projeto->id]) }}"
+                          class="btn btn-dark btn-sm">
                           <i class="fs-4 bi bi-file-earmark-arrow-up-fill"></i>
                         </a>
                         @if (auth()->user()->chefe)

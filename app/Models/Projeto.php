@@ -32,6 +32,11 @@ class Projeto extends Model
     {
         return $this->hasMany('App\Models\Arquivo', 'id_projeto', 'id');
     }
+
+    public function pagamentos()
+    {
+        return $this->hasMany(Pagamento::class);
+    }
     
     
 }

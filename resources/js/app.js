@@ -1,6 +1,7 @@
 import "./bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./input-mask";
+import "./input-search";
 
 //tarefa
 import "./tarefa/show";
@@ -18,7 +19,6 @@ import "./cliente/search-cliente";
 import "./projeto/create";
 import "./projeto/edit";
 import "./projeto/show";
-import "./projeto/search-projeto";
 
 //arquivo
 import "./arquivo/show";

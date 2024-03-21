@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('nome');
             $table->text('descricao')->nullable();
-            $table->decimal('valor_arquitetonico', 10, 2)->nullable();
-            $table->decimal('valor_estrutural', 10, 2)->nullable();
-            $table->decimal('valor_hidraulica', 10, 2)->nullable();
-            $table->decimal('valor_eletrica', 10, 2)->nullable();
+            $table->string('valor_arquitetonico')->nullable();
+            $table->string('valor_estrutural')->nullable();
+            $table->string('valor_hidraulica')->nullable();
+            $table->string('valor_eletrica')->nullable();
             $table->boolean('status')->default(0); 
             $table->unsignedBigInteger('id_cliente'); 
             $table->foreign('id_cliente')->references('id')->on('clientes')->onDelete('cascade'); 
