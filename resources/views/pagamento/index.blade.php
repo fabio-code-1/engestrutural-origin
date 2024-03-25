@@ -2,6 +2,9 @@
 
 @section('content')
   <section id="pagamento-index">
+    {{-- <a href="{{ route('cliente.show', ['cliente' => $projeto->id_cliente]) }}" class="btn btn-light">
+      VOLTAR PERFIL
+    </a> --}}
 
     <div class="p-md-4">
       <div class="row justify-content-center">
@@ -18,9 +21,13 @@
               </div>
             </div>
           @endif
+          <div class="bg-dark mb-2 py-2 text-center"> <!-- Adicionado -->
+            <a href="{{ route('cliente.show', ['cliente' => $id_cliente]) }}" class="btn btn-light">
+              VOLTAR PERFIL
+            </a>
+          </div>
           <div class="card">
             <div class="card-header fw-bolder">Adicionar Pagamento</div>
-
             <div class="card-body">
               <form method="POST" action="{{ route('pagamento.store') }}">
                 @csrf
@@ -74,8 +81,7 @@
 
           <div class="card mt-3">
             <div class="card-header fw-bolder">Pagamentos</div>
-            <div class="card-body overflow-auto" style="height: 40vh">
-
+            <div class="card-body overflow-auto" style="height: 35vh">
               @foreach ($projetos as $projeto)
                 <button class="btn btn-primary w-100" type="button" data-bs-toggle="collapse"
                   data-bs-target="#historico-pagamento-{{ $projeto->id }}" aria-expanded="false"

@@ -15,7 +15,7 @@ class PagamentoController extends Controller
     public function index(string $id)
     {
         $projetos = Projeto::where('id_cliente', $id)->get();
-        return view('pagamento.index', ['projetos' => $projetos]);
+        return view('pagamento.index', ['projetos' => $projetos, 'id_cliente' => $id]);
     }
 
     /**
