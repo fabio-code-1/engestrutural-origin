@@ -85,6 +85,19 @@ class PagamentoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Encontre o pagamento pelo ID
+        $pagamento = Pagamento::find($id);
+    
+        // Verifique se o pagamento foi encontrado
+        if (!$pagamento) {
+            // Se não encontrado, redirecione com uma mensagem de erro
+            return redirect()->back()->with('error', 'Pagamento não encontrado.');
+        }
+    
+        // Exclua o pagamento
+        $pagamento->delete();
+    
+        // Redirecione de volta com uma mensagem de sucesso
+        return redirect()->back()->with('success', 'Pagamento excluído com sucesso.');
     }
 }

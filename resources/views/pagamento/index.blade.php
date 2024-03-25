@@ -6,13 +6,24 @@
     <div class="p-md-4">
       <div class="row justify-content-center">
         <div class="col-md-8">
+          @if (session('success'))
+            <div class="toast show align-items-center bg-success fw-bolder text-light w-100" role="alert"
+              aria-live="assertive" aria-atomic="true">
+              <div class="d-flex">
+                <div class="toast-body">
+                  {{ session('success') }}
+                </div>
+                <button type="button" class="btn-close btn-close-white m-auto me-2" data-bs-dismiss="toast"
+                  aria-label="Close"></button>
+              </div>
+            </div>
+          @endif
           <div class="card">
-            <div class="card-header">Adicionar Pagamento</div>
+            <div class="card-header fw-bolder">Adicionar Pagamento</div>
 
             <div class="card-body">
               <form method="POST" action="{{ route('pagamento.store') }}">
                 @csrf
-
                 <div class="form-group row mb-2">
                   <label for="projeto" class="col-md-4 col-form-label text-md-right">Projeto</label>
                   <div class="col-md-6">
@@ -62,8 +73,8 @@
           </div>
 
           <div class="card mt-3">
-            <div class="card-header">Pagamentos</div>
-            <div class="card-body">
+            <div class="card-header fw-bolder">Pagamentos</div>
+            <div class="card-body overflow-auto" style="height: 40vh">
 
               @foreach ($projetos as $projeto)
                 <button class="btn btn-primary w-100" type="button" data-bs-toggle="collapse"
@@ -76,6 +87,11 @@
                     <div class="card card-body">
                       <div class="card-header d-flex justify-content-between align-items-center mb-2">
                         <p class="mb-0">Cobranças</p>
+                        <p class="mb-0">Legenda -
+                          <span class="badge bg-primary">RECEBER</span>
+                          <span class="badge bg-success">PAGO</span>
+                        </p>
+
                       </div>
                       <table class="table">
                         <thead>
@@ -121,7 +137,7 @@
                       </div>
                       <table class="table">
                         <thead>
-                          <tr>
+                          <tr class="text-center align-middle">
                             <th scope="col">Categoria</th>
                             <th scope="col">Forma de Pagamento</th>
                             <th scope="col">Valor do Pagamento</th>
@@ -130,11 +146,24 @@
                         </thead>
                         <tbody>
                           @foreach ($projeto->pagamentos as $pagamento)
-                            <tr>
+                            <tr class="text-center align-middle">
                               <td>{{ $pagamento->categoria_pagamento }}</td>
                               <td>{{ $pagamento->forma_pagamento }}</td>
                               <td>{{ $pagamento->pagamento }}</td>
                               <td>{{ $pagamento->created_at->format('d/m/Y') }}</td>
+                              <td>
+                                <button href="{{ route('pagamento.destroy', ['pagamento' => $pagamento->id]) }}"
+                                  class="btn btn-danger btn-sm"
+                                  onclick="event.preventDefault(); if(confirm('Tem certeza que deseja excluir este pagamento?')) document.getElementById('delete-form-{{ $pagamento->id }}').submit();">
+                                  <i class="bi bi-trash3-fill fs-4"></i>
+                                </button>
+                                <form id="delete-form-{{ $pagamento->id }}"
+                                  action="{{ route('pagamento.destroy', ['pagamento' => $pagamento->id]) }}"
+                                  method="POST" style="display: none;">
+                                  @csrf
+                                  @method('DELETE')
+                                </form>
+                              </td>
                             </tr>
                           @endforeach
                         </tbody>
