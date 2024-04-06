@@ -22,12 +22,19 @@
         <div class="row flex-nowrap">
           @include('layouts.navbar')
           <div class="col" id="app-conteudo">
+            <button class="btn btn-dark fw-bolder w-100" aria-current="page" data-bs-toggle="modal"
+              data-bs-target="#create">
+              <i class="bi bi-clock-history"></i>
+            </button>
             @yield('content')
           </div>
         </div>
       </div>
     </main>
   </div>
+  @if (auth()->user()->chefe)
+    @include('ponto.create')
+  @endif
 </body>
 
 </html>
