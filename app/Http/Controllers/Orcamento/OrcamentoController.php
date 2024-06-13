@@ -1,24 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Financeiro;
+namespace App\Http\Controllers\Orcamento;
 
-use App\Models\Projeto;
-use App\Models\Cliente;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
-class FinanceiroController extends Controller
+class OrcamentoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $clientes = Cliente::with('projetos')->get();
-        
-        return view('financeiro.index', ['clientes' => $clientes,]);
+        return view('orcamento.index');
     }
-    
 
     /**
      * Show the form for creating a new resource.

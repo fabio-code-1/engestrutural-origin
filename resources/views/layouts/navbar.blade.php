@@ -38,6 +38,10 @@
               <a href="#" class="nav-link text-light px-0 align-middle">
                 &bull; <span class="d-none d-sm-inline ms-1">CUSTOS FIXOS</span></a>
             </li>
+            <li>
+              <a href="{{ route('orcamento.index') }}" class="nav-link text-light px-0 align-middle">
+                &bull; <span class="d-none d-sm-inline ms-1">ORÇAMENTO</span></a>
+            </li>
           @endif
           <li>
             <a href="#" class="nav-link text-light px-0 align-middle">

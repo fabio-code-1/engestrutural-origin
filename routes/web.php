@@ -19,5 +19,6 @@ include __DIR__.'/Projeto/projeto.php';
 include __DIR__.'/Arquivo/arquivo.php';
 include __DIR__.'/Financeiro/financeiro.php';
 include __DIR__.'/Pagamento/pagamento.php';
+include __DIR__.'/Orcamento/orcamento.php';
 
 

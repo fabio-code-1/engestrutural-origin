@@ -28,4 +28,4 @@ import "./arquivo/modalArquivo";
 import "./arquivo/butaoArquivo";
 
 //financeiro
-import "./financeiro/grafico-financeiro-venda";
+import "./financeiro/data-pagamentos";
