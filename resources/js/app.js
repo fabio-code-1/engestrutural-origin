@@ -29,3 +29,4 @@ import "./arquivo/butaoArquivo";
 
 //financeiro
 import "./financeiro/data-pagamentos";
+import "./financeiro/parcelamento";
