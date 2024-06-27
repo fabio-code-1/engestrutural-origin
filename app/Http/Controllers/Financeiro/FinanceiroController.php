@@ -15,9 +15,8 @@ class FinanceiroController extends Controller
      */
     public function index()
     {
-        $clientes = Cliente::with('projetos')->get();
-        
-        return view('financeiro.index', ['clientes' => $clie]);
+        $financeiros = Financeiro::with('projeto', 'cliente')->get();
+        return view('financeiro.index', compact('financeiros'));
     }
     
 
@@ -46,11 +45,12 @@ class FinanceiroController extends Controller
             'data_pagamento' => 'required|date',
             'parcela' => 'nullable|string|max:255',
         ]);
+
     
         // Criação de um novo registro Financeiro 
         $financeiro = new Financeiro();
-        $financeiro->cliente = $request->cliente;
-        $financeiro->projeto = $request->projeto;
+        $financeiro->cliente_id = $request->cliente;
+        $financeiro->projeto_id = $request->projeto;
         $financeiro->categoria_pagamento = $request->categoria_pagamento;
         $financeiro->forma_pagamento = $request->forma_pagamento;
         $financeiro->pagamento = $request->pagamento;

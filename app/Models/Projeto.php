@@ -37,6 +37,7 @@ class Projeto extends Model
     {
         return $this->hasMany(Pagamento::class);
     }
-    
+
+
     
 }

@@ -11,42 +11,33 @@
         <div class="card-header fw-bolder">Pagamentos de Hoje</div>
         <div class="card-body overflow-y-auto p-2" style="height: 30vh">
           {{-- <h5 class="text-center">Sem pagamentos agendados para hoje</h5> --}}
-          <table class="table-warning table-striped table">
+          <table class="table-striped table-warning table">
             <thead>
               <tr>
-
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Cliente</th>
+                <th scope="col">Categoria Pagamento</th>
+                <th scope="col">Projeto</th>
+                <th scope="col">Forma Pagamento</th>
+                <th scope="col">Pagamento</th>
+                <th scope="col">Parcela</th>
+                <th scope="col">Data Pagamento</th>
               </tr>
             </thead>
             <tbody>
-
-              <tr>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-
-              <tr>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-
-              <tr>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-
+              @foreach ($financeiros as $financeiro)
+                <tr>
+                  <td>{{ $financeiro->cliente->nome }}</td>
+                  <td>{{ $financeiro->categoria_pagamento }}</td>
+                  <td>{{ $financeiro->projeto->nome }}</td>
+                  <td>{{ $financeiro->forma_pagamento }}</td>
+                  <td>{{ $financeiro->pagamento }}</td>
+                  <td>{{ $financeiro->parcela }}</td>
+                  <td>{{ $financeiro->data_pagamento }}</td>
+                </tr>
+              @endforeach
             </tbody>
           </table>
+
         </div>
       </div>
 

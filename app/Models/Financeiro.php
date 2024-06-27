@@ -20,4 +20,16 @@ class Financeiro extends Model
         'data_pagamento',
         'parcela',
     ];
+
+    public function projeto()
+    {
+        return $this->belongsTo(Projeto::class, 'projeto_id');
+    }
+
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class, 'cliente_id');
+    }
+ 
+
 }

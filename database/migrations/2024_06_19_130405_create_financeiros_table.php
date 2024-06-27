@@ -14,14 +14,19 @@ return new class extends Migration
         Schema::create('financeiros', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('cliente');
-            $table->string('projeto');
+            $table->unsignedBigInteger('cliente_id');
+            $table->unsignedBigInteger('projeto_id');
             $table->string('categoria_pagamento')->nullable();
             $table->string('forma_pagamento')->nullable();
             $table->string('pagamento')->nullable();
             $table->integer('parcela')->nullable();
-            $table->date('data_pagamento')->nullable();    
+            $table->date('data_pagamento')->nullable(); 
+        
+            // Define as chaves estrangeiras
+            $table->foreign('cliente_id')->references('id')->on('clientes');
+            $table->foreign('projeto_id')->references('id')->on('projetos');
         });
+        
     }
 
     /**
